@@ -1,0 +1,44 @@
+.nav-bar-logo {
+  height: 50px;
+  border-radius: 15%;
+}
+
+.nav-parent {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  margin-top: 8px;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+.nav-child-search {
+  width: 30%;
+}
+
+.nav-child-search input {
+  width: 90%;
+  height: 30px;
+  border-radius: 26px;
+  border: 1px solid #00000024;
+  padding-left: 16px;
+}
+
+input::placeholder {
+  padding-left: 10px;
+}
+
+.nav-child-cart,
+.nav-child-login,
+.nav-child-seller {
+  display: flex;
+  align-items: center;
+}
+
+.border {
+  width: 99%;
+  border: 1px solid #00000024;
+}
