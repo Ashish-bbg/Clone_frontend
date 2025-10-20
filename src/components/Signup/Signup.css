@@ -1,0 +1,77 @@
+.center {
+  display: flex;
+  justify-content: center;
+  margin-top: 5%;
+}
+
+.signup {
+  font-family: sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  width: 40%;
+  height: 60vh;
+  /* background: #f5f5f5; */
+}
+
+.input-group {
+  position: relative;
+  margin: 20px 0;
+  width: 250px;
+}
+
+input {
+  width: 100%;
+  padding: 12px 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background: none;
+  outline: none;
+}
+
+label {
+  position: absolute;
+  top: 12px;
+  left: 10px;
+  color: #888;
+  font-size: 16px;
+  pointer-events: none;
+  transition: 0.2s ease all;
+}
+
+/* When input is focused or has content */
+input:focus + label,
+input:not(:placeholder-shown) + label {
+  top: -10px;
+  left: 8px;
+  font-size: 13px;
+  background: #ffffff;
+  padding: 0 4px;
+  color: #007bff;
+}
+
+button {
+  background-color: #007bff;
+  color: #ffffff;
+  padding: 9px 10px;
+  border: none;
+  border-radius: 5px;
+}
+
+button:hover {
+  cursor: pointer;
+  background-color: #087cf8d9;
+}
+
+.login-btn a {
+  color: #007bff;
+  /* text-decoration: underline; */
+}
+
+.login-btn {
+  padding: 10px;
+}

@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import Logo from "../../assets/Logo1.png";
 import "./Navbar.css";
 const Navbar = () => {
@@ -5,13 +6,13 @@ const Navbar = () => {
     <>
       <div className="nav-parent">
         <div className="nav-child-logo">
-          <a href="#">
+          <Link to="/">
             <img src={Logo} alt="" className="nav-bar-logo" />
-          </a>
+          </Link>
         </div>
         <div className="nav-child-logo">
           <span>
-            <a href="#">Home</a>
+            <Link to="/">Home</Link>
           </span>
         </div>
         <div className="nav-child-logo">
@@ -39,7 +40,9 @@ const Navbar = () => {
             src="https://static-assets-web.flixcart.com/batman-returns/batman-returns/p/images/profile-52e0dc.svg"
             alt="login"
           />
-          <span>Signup</span>
+          <span>
+            <Link to="/signup">Signup</Link>
+          </span>
         </div>
         <div className="nav-child-login">
           <img

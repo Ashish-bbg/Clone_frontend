@@ -21,7 +21,7 @@ a {
 
 .nav-child-search input {
   width: 90%;
-  height: 30px;
+  height: 10px;
   border-radius: 26px;
   border: 1px solid #00000024;
   padding-left: 16px;
@@ -41,4 +41,5 @@ input::placeholder {
 .border {
   width: 99%;
   border: 1px solid #00000024;
+  margin-top: 10px;
 }
