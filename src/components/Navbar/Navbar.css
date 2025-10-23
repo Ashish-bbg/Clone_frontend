@@ -21,7 +21,7 @@ a {
 
 .nav-child-search input {
   width: 90%;
-  height: 10px;
+  height: 34px;
   border-radius: 26px;
   border: 1px solid #00000024;
   padding-left: 16px;
@@ -41,5 +41,39 @@ input::placeholder {
 .border {
   width: 99%;
   border: 1px solid #00000024;
+  margin-top: 10px;
+}
+
+.capatalize {
+  text-transform: capitalize;
+}
+
+.dropdown {
+  /* border: 0.5px solid; */
+  border-radius: 10px;
+}
+.dropdown:hover {
+  /* border: 0.5px solid black; */
+  border-radius: 10px;
+  background-color: #72727221;
+}
+
+.dropdown-menu {
+  transition: all 0.3s ease;
+  opacity: 0;
+  visibility: hidden;
+  display: block; /* keep display block but hide with opacity */
+  padding: 5px;
+}
+
+.dropdown-menu .dropdown-item:hover {
+  border-radius: 5px;
+  background-color: #f0f0f0; /* optional: highlight color */
+  transition: all 0.2s ease;
+  color: black;
+}
+.dropdown:hover .dropdown-menu {
+  opacity: 1;
+  visibility: visible;
   margin-top: 10px;
 }

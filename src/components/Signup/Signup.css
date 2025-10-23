@@ -68,8 +68,8 @@ button:hover {
 }
 
 .login-btn a {
-  color: #007bff;
-  /* text-decoration: underline; */
+  color: blue;
+  text-decoration: underline;
 }
 
 .login-btn {
