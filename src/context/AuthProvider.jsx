@@ -1,29 +1,23 @@
 import { useEffect, useState } from "react";
 import { getUserProfile } from "../api/registerApi";
 import { AuthContext } from "./AuthContext";
+import { useQuery } from "@tanstack/react-query";
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
-  const [loading, setLoading] = useState(true);
-
-  const fetchUser = async () => {
-    try {
-      const data = await getUserProfile();
-      setUser(data);
-    } catch (error) {
-      console.log(error);
-      setUser(null);
-    } finally {
-      setLoading(false);
-    }
-  };
+  const { data, isLoading, isError } = useQuery({
+    queryKey: ["authUser"],
+    queryFn: getUserProfile,
+    retry: false,
+  });
 
   useEffect(() => {
-    fetchUser();
-  }, []);
+    if (data) setUser(data);
+    else if (isError) setUser(null);
+  }, [data, isError]);
 
   return (
-    <AuthContext.Provider value={{ user, setUser, loading }}>
+    <AuthContext.Provider value={{ user, setUser, isLoading }}>
       {children}
     </AuthContext.Provider>
   );

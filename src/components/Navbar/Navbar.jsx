@@ -2,23 +2,12 @@ import { Link } from "react-router-dom";
 import Logo from "../../assets/Logo1.png";
 import "./Navbar.css";
 import { useAuth } from "../../context/useAuth.js";
-import { logout } from "../../api/registerApi.js";
-import { useState } from "react";
+import { useSignout } from "../../hooks/useSignout.js";
 const Navbar = () => {
-  const { user, setUser } = useAuth();
+  const { user } = useAuth();
   console.log(user);
-  const [loading, setLoading] = useState(false);
-  const handleSignout = async () => {
-    try {
-      setLoading(true);
-      const message = await logout();
-      console.log(message);
-      setUser(null);
-      setLoading(false);
-    } catch (err) {
-      console.log("Logout failed", err);
-    }
-  };
+  const { loading, signout } = useSignout();
+
   return (
     <>
       <div className="nav-parent">
@@ -88,9 +77,9 @@ const Navbar = () => {
 
             <ul className="dropdown-menu">
               <li>
-                <a className="dropdown-item" href="#">
+                <Link className="dropdown-item" to="/account">
                   My Account
-                </a>
+                </Link>
               </li>
               <li>
                 <a className="dropdown-item" href="#">
@@ -118,7 +107,7 @@ const Navbar = () => {
                 </a>
               </li>
               <li>
-                <a className="dropdown-item" href="#" onClick={handleSignout}>
+                <a className="dropdown-item" href="#" onClick={signout}>
                   {loading ? "Signing out..." : "Sign Out"}
                 </a>
               </li>

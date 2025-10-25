@@ -9,8 +9,9 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { BrowserRouter } from "react-router-dom";
 import { AuthProvider } from "./context/AuthProvider.jsx";
+import { queryClient } from "./queries/queryClient.js"; // using the persistence
 
-const queryClient = new QueryClient();
+// const queryClient = new QueryClient();
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>

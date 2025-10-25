@@ -19,11 +19,11 @@ const Login = () => {
     setError("");
     setIsLoading(true);
     try {
-      const data = await loginUser(formData);
-      console.log("Login successfull", data);
-      setUser(data.userData);
+      const response = await loginUser(formData);
+      console.log("Login successfull", response);
+      setUser(response.userData);
       // alert("Login successfull");
-      navigate("/");
+      setTimeout(() => navigate("/"), 300);
     } catch (err) {
       setError(err.response?.data?.message || "Login failed");
     } finally {
@@ -34,7 +34,7 @@ const Login = () => {
   return (
     <div className="center">
       <div className="signup">
-        <h2>Login Page</h2>
+        <h3>Login Page</h3>
 
         <form onSubmit={handleLogin} method="post">
           <div className="input-group">

@@ -20,11 +20,15 @@ const Signup = () => {
     setError("");
     setIsLoading(true);
     try {
-      const data = await registerUser(formData);
-      setUser(data.userData);
-      console.log("Signup successfull", data);
+      const response = await registerUser(formData);
+      if (!response || !response.userData) {
+        setError("Unexpected server response. Please try again.");
+        return;
+      }
+      setUser(response.userData);
+      console.log("Signup successfull", response);
       // alert("Signup successfull");
-      navigate("/");
+      setTimeout(() => navigate("/"), 300);
     } catch (err) {
       setError(err.response?.data?.message || "Signup failed");
     } finally {
@@ -35,7 +39,7 @@ const Signup = () => {
   return (
     <div className="center">
       <div className="signup">
-        <h2>Signup Page</h2>
+        <h3>Signup Page</h3>
 
         <form onSubmit={handleSignup} method="post">
           <div className="input-group">

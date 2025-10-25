@@ -1,0 +1,267 @@
+.account-parent {
+  display: flex;
+  width: 100%;
+}
+
+.account-left {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 30%;
+  /* border: 1px solid red; */
+  margin: 2%;
+  /* box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); */
+}
+
+.account-right {
+  width: 70%;
+  margin: 2%;
+  /* border: 1px solid green; */
+}
+
+.profile-main {
+  padding-bottom: 20px;
+  width: 100%;
+}
+
+.profile-info {
+  display: flex;
+  align-items: center;
+  gap: 20px; /* Space between image and text */
+  background-color: #fff;
+  border-radius: 12px;
+  padding: 15px 25px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.profile-img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #ddd;
+}
+
+.profile-info span {
+  font-size: 1.2rem;
+  font-weight: 600;
+  display: block;
+  color: #333;
+}
+
+.profile-info p {
+  font-size: 0.95rem;
+  color: #666;
+  margin-top: 4px;
+}
+
+.profile-details {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  width: 100%;
+}
+
+.profile-details > div {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 10px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  border-radius: 8px;
+}
+
+.profile-details > div:hover {
+  background-color: #f5f5f5;
+}
+
+.profile-details img {
+  width: 28px;
+  height: 28px;
+}
+
+.profile-details span {
+  font-size: 1rem;
+  color: #333;
+  font-weight: 500;
+}
+
+/* right side style */
+.header-items {
+  display: flex;
+  justify-content: space-around;
+  background-color: #fff;
+  padding: 15px 20px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  gap: 20px; /* Space between items */
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  background-color: #f9f9f9;
+  padding: 10px 15px;
+  border-radius: 10px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.item img {
+  margin-right: 10px;
+  width: 28px;
+  height: 28px;
+}
+
+.item-details {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.item-details span:first-child {
+  font-size: 0.95rem;
+  color: #555;
+  font-weight: 500;
+}
+
+.item-details span:last-child {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #222;
+  margin-top: 2px;
+}
+
+/* accoun info starts here */
+.account-container {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin: 20px 0px;
+}
+h4 {
+  margin-bottom: 15px;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #333;
+}
+.account-info {
+  display: flex;
+  justify-content: space-between;
+  background-color: #fff;
+  padding-bottom: 10px;
+  border-radius: 12px;
+  gap: 30px; /* Space between left and right */
+}
+
+/* Left and right columns */
+.account-info-left,
+.account-info-right {
+  display: flex;
+  flex-direction: column;
+  gap: 15px; /* Space between each info block */
+  flex: 1; /* Equal width */
+}
+
+/* Individual info block */
+.account-info-left div,
+.account-info-right div {
+  display: flex;
+  flex-direction: column;
+  padding: 10px 15px;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+}
+
+/* Headings */
+.account-info h6 {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #555;
+  margin-bottom: 4px;
+}
+
+/* Values */
+.account-info span {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #222;
+}
+
+/* order items styles */
+.order {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  margin-bottom: 20px;
+}
+
+.order h4 {
+  margin-bottom: 15px;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #333;
+}
+
+/* Container for order items */
+.order-items {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Individual order item */
+.order-item {
+  display: flex;
+  justify-content: space-between; /* spread columns evenly */
+  padding: 12px 15px;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  align-items: center;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.order-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Columns inside each order item */
+.order-column {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+/* Labels (Order ID, Date, Price, Status) */
+.order-column span:first-child {
+  font-size: 0.85rem;
+  color: #555;
+  font-weight: 500;
+}
+
+/* Values (#QPELKD987SDNI, 28.09.2025, etc.) */
+.order-column span:last-child {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #222;
+}
+
+/* Divider between orders */
+.order-items hr {
+  border: none;
+  border-top: 1px solid #e0e0e0;
+  margin: 5px 0;
+}

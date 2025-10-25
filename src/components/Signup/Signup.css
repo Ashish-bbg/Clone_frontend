@@ -13,7 +13,7 @@
   border: 1px solid #ccc;
   border-radius: 10px;
   width: 40%;
-  height: 60vh;
+  height: 70vh;
   /* background: #f5f5f5; */
 }
 
@@ -21,6 +21,10 @@
   position: relative;
   margin: 20px 0;
   width: 250px;
+}
+
+h3 {
+  padding-top: 1.5rem;
 }
 
 input {
@@ -57,7 +61,7 @@ input:not(:placeholder-shown) + label {
 button {
   background-color: #007bff;
   color: #ffffff;
-  padding: 9px 10px;
+  padding: 5px 10px;
   border: none;
   border-radius: 5px;
 }
@@ -73,5 +77,5 @@ button:hover {
 }
 
 .login-btn {
-  padding: 10px;
+  margin-top: 15px;
 }
