@@ -35,11 +35,13 @@ const Navbar = () => {
           <input type="text" placeholder="🔍Search for Products" />
         </div>
         <div className="nav-child-cart">
-          <img
-            src="https://static-assets-web.flixcart.com/batman-returns/batman-returns/p/images/header_cart-eed150.svg"
-            alt="cart"
-          />
-          <span>Cart</span>
+          <Link to="/cart">
+            <img
+              src="https://static-assets-web.flixcart.com/batman-returns/batman-returns/p/images/header_cart-eed150.svg"
+              alt="cart"
+            />
+            <span>Cart</span>
+          </Link>
         </div>
 
         {!user ? (

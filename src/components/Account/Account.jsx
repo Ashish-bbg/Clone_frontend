@@ -1,6 +1,7 @@
 import "./Account.css";
 import { useAuth } from "../../context/useAuth";
 import { useSignout } from "../../hooks/useSignout";
+import { Link } from "react-router-dom";
 const Account = () => {
   const { user } = useAuth();
   const { loading, signout } = useSignout();
@@ -37,8 +38,10 @@ const Account = () => {
               <span>Delivery addresses</span>
             </div>
             <div>
-              <img src="./icons/cart.png" alt="reviews icon" width="30px" />
-              <span>Cart</span>
+              <Link to="/cart">
+                <img src="./icons/cart.png" alt="reviews icon" width="30px" />
+                <span>Cart</span>
+              </Link>
             </div>
             <div>
               <img
@@ -87,10 +90,12 @@ const Account = () => {
             </div>
             <div className="item">
               <img src="./icons/cart.png" alt="cart icon" width="25px" />
-              <div className="item-details">
-                <span>Cart</span>
-                <span>4</span>
-              </div>
+              <Link to="/cart">
+                <div className="item-details">
+                  <span>Cart</span>
+                  <span>4</span>
+                </div>
+              </Link>
             </div>
           </div>
           <div className="account-container">
