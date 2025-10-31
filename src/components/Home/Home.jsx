@@ -1,5 +1,6 @@
 import { useProducts } from "../../queries/useProducts";
-
+import "./Home.css";
+import Product from "./Products/Product";
 const Home = () => {
   const { data, isLoading, error } = useProducts();
 
@@ -7,12 +8,19 @@ const Home = () => {
 
   if (error) return <h1>Something went wrong while fetching products.</h1>;
   const products = data?.products || [];
+  // console.log(products[0].images);
   return (
     <>
-      <h1>Home page</h1>
-      {products.map((product) => (
-        <div key={product._id}>{product.name}</div>
-      ))}
+      <div className="products-container">
+        {products.map((product) => (
+          <Product
+            name={product.name}
+            price={product.price}
+            key={product._id}
+            img={product.images[0]}
+          />
+        ))}
+      </div>
     </>
   );
 };
