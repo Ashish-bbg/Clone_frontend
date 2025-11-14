@@ -3,10 +3,14 @@ import Logo from "../../assets/Logo1.png";
 import "./Navbar.css";
 import { useAuth } from "../../context/useAuth.js";
 import { useSignout } from "../../hooks/useSignout.js";
+import { useCart } from "../../queries/useCart.js";
 const Navbar = () => {
   const { user } = useAuth();
-  console.log(user);
+  // console.log(user);
   const { loading, signout } = useSignout();
+
+  const { data } = useCart();
+  const totalQuantity = data?.totalItems || "";
 
   return (
     <>
@@ -40,7 +44,7 @@ const Navbar = () => {
               src="https://static-assets-web.flixcart.com/batman-returns/batman-returns/p/images/header_cart-eed150.svg"
               alt="cart"
             />
-            <span>Cart</span>
+            <span>Cart ({totalQuantity})</span>
           </Link>
         </div>
 

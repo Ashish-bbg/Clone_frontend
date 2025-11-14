@@ -1,0 +1,126 @@
+.product-details-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 3rem;
+  padding: 2rem 5%;
+  font-family: "Poppins", sans-serif;
+  color: #222;
+}
+
+/* -------- Left Side (Image) -------- */
+.product-left {
+  width: 40%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.product-left img {
+  width: 80%;
+  max-width: 400px;
+  border-radius: 10px;
+  object-fit: contain;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* -------- Right Side (Details) -------- */
+.product-right {
+  width: 55%;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.product-details h4 {
+  font-size: 1.4rem;
+  font-weight: 600;
+  line-height: 1.4;
+  margin-bottom: 0.5rem;
+}
+
+.product-price-review {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.product-price-review h3 {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #1a73e8;
+  margin: 0;
+}
+
+.reviews {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  margin: 0;
+}
+
+.reviews img {
+  width: 16px;
+}
+
+.reviews span {
+  font-size: 0.9rem;
+  color: #555;
+  margin-left: 4px;
+}
+
+/* -------- Buttons (Fav + Cart) -------- */
+.product-fav-cart {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.product-fav-cart button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #222;
+  background-color: #f8f9fa;
+  border: 1px solid #ccc;
+  padding: 0.6rem 1.2rem;
+  border-radius: 6px;
+  /* cursor: pointer; */
+  font-size: 0.95rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  width: auto; /* ✅ fixes stretching */
+}
+
+.product-fav-cart button:hover {
+  background-color: #e9ecef;
+}
+
+.product-fav-cart img {
+  width: 18px;
+}
+
+/* -------- Description -------- */
+.product-description p {
+  line-height: 1.6;
+  font-size: 0.95rem;
+  color: #444;
+  margin-top: 1rem;
+}
+
+/* -------- Divider -------- */
+.product-right hr {
+  border: none;
+  border-top: 1px solid #ddd;
+  margin: 1rem 0;
+}
+
+.product-fav-cart button:last-child {
+  background-color: #1a73e8;
+  color: white;
+  border: none;
+}
+
+.product-fav-cart button:last-child:hover {
+  background-color: #155ec0;
+}

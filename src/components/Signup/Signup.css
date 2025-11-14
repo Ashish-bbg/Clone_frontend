@@ -1,59 +1,73 @@
 .center {
   display: flex;
   justify-content: center;
-  margin-top: 5%;
+  align-items: center;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #e3f2fd, #ffffff);
 }
 
 .signup {
-  font-family: sans-serif;
+  font-family: "Poppins", sans-serif;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  border: 1px solid #ccc;
-  border-radius: 10px;
-  width: 40%;
-  height: 70vh;
-  /* background: #f5f5f5; */
+  padding: 2rem 3rem;
+  border: 1px solid #e0e0e0;
+  border-radius: 15px;
+  width: 380px;
+  background: #fff;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.signup:hover {
+  /* transform: translateY(-3px); */
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+h3 {
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+  color: #333;
 }
 
 .input-group {
   position: relative;
   margin: 20px 0;
-  width: 250px;
-}
-
-h3 {
-  padding-top: 1.5rem;
+  width: 100%;
 }
 
 input {
   width: 100%;
-  padding: 12px 10px;
-  font-size: 16px;
+  padding: 12px 12px;
+  font-size: 15px;
   border: 1px solid #ccc;
   border-radius: 6px;
   background: none;
   outline: none;
+  transition: border-color 0.2s ease;
+}
+
+input:focus {
+  border-color: #007bff;
 }
 
 label {
   position: absolute;
   top: 12px;
-  left: 10px;
+  left: 12px;
   color: #888;
-  font-size: 16px;
+  font-size: 15px;
   pointer-events: none;
   transition: 0.2s ease all;
 }
 
-/* When input is focused or has content */
 input:focus + label,
 input:not(:placeholder-shown) + label {
-  top: -10px;
-  left: 8px;
-  font-size: 13px;
-  background: #ffffff;
+  top: -9px;
+  left: 10px;
+  font-size: 12px;
+  background: #fff;
   padding: 0 4px;
   color: #007bff;
 }
@@ -61,21 +75,33 @@ input:not(:placeholder-shown) + label {
 button {
   background-color: #007bff;
   color: #ffffff;
-  padding: 5px 10px;
+  font-weight: 500;
+  padding: 10px 0;
+  width: 100%;
   border: none;
-  border-radius: 5px;
+  border-radius: 6px;
+  font-size: 15px;
+  transition: background-color 0.2s ease, transform 0.1s ease;
 }
 
 button:hover {
   cursor: pointer;
-  background-color: #087cf8d9;
-}
-
-.login-btn a {
-  color: blue;
-  text-decoration: underline;
+  background-color: #0866e2;
+  transform: scale(1.02);
 }
 
 .login-btn {
   margin-top: 15px;
+  font-size: 14px;
+  color: #555;
+}
+
+.login-btn a {
+  color: #007bff;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.login-btn a:hover {
+  text-decoration: underline;
 }

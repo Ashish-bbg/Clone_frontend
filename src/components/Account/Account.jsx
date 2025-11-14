@@ -45,7 +45,7 @@ const Account = () => {
             </div>
             <div>
               <img
-                src="./icons/favourites.png"
+                src="./icons/heart-outline.png"
                 alt="reviews icon"
                 width="30px"
               />
@@ -65,7 +65,7 @@ const Account = () => {
           <div className="header-items">
             <div className="item">
               <img
-                src="./icons/favourites.png"
+                src="./icons/heart-outline.png"
                 alt="favourite product icon"
                 width="25px"
               />
