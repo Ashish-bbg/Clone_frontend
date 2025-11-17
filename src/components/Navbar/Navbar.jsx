@@ -10,7 +10,7 @@ const Navbar = () => {
   const { loading, signout } = useSignout();
 
   const { data } = useCart();
-  const totalQuantity = data?.totalItems || "";
+  const totalQuantity = data?.items?.length || 0;
 
   return (
     <>

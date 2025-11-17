@@ -1,34 +1,13 @@
 import { addItemToCart } from "../api/cartApi";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
-// export const useAddToCart = (id) => {
-//   const [adding, setAdding] = useState(false);
-
-//   const addToCart = async () => {
-//     try {
-//       setAdding(true);
-//       // console.log("Adding...");
-//       const response = await addItemToCart(id);
-//       console.log(response.message);
-//     } catch (err) {
-//       console.error(
-//         "Failed to add to cart:",
-//         err.response?.data?.message || err.message
-//       );
-//     } finally {
-//       setAdding(false);
-//     }
-//   };
-//   return { addToCart, adding };
-// };
-
 export const useAddToCart = () => {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: addItemToCart,
+    mutationFn: (product) => addItemToCart(product.productId),
     onMutate: async (newItem) => {
-      await queryClient.cancelQueries(["cart"]);
+      await queryClient.cancelQueries({ queryKey: ["cart"] });
       const previousCart = queryClient.getQueryData(["cart"]);
 
       queryClient.setQueryData(["cart"], (oldCart) => {
@@ -59,19 +38,36 @@ export const useAddToCart = () => {
           (sum, item) => sum + item.price * item.quantity,
           0
         );
-        // const totalItems = updatedItems.reduce(
-        //   (sum, item) => sum + item.quantity,
-        //   0
-        // );
-        return { ...oldCart, items: updatedItems, totalAmount };
+        const totalItems = updatedItems.reduce(
+          (sum, item) => sum + item.quantity,
+          0
+        );
+        return { ...oldCart, items: updatedItems, totalAmount, totalItems };
       });
       return { previousCart };
     },
+
+    onSuccess: (data) => {
+      queryClient.setQueryData(["cart"], (oldData) => {
+        if (!oldData) return;
+        // console.log(oldData);
+        return {
+          // ...oldData,
+          name: oldData.name,
+          price: oldData.price,
+          items: oldData.items,
+          img: oldData.images?.[0],
+          totalAmount: data.totalAmount,
+        };
+      });
+    },
+
     onError: (_err, _newItem, context) => {
-      queryClient.setQueriesData(["cart"], context.previousCart);
+      if (context.previousCart)
+        queryClient.setQueryData(["cart"], context.previousCart);
     },
-    onSettled: () => {
-      queryClient.invalidateQueries(["cart"]);
-    },
+    // onSettled: () => {
+    //   queryClient.invalidateQueries({ queryKey: ["cart"] });
+    // },
   });
 };

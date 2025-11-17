@@ -1,10 +1,37 @@
 import { Link } from "react-router-dom";
 import "./Product.css";
 import { useAddToCart } from "../../../hooks/useAddToCart";
+import { useCart } from "../../../queries/useCart";
+import { useUpdateCartItem } from "../../../hooks/useUpdateCartItem";
 
 const Product = ({ name, price, img, id }) => {
   // console.log(id);
-  const { mutate: addToCart, isPending } = useAddToCart();
+  const { data: cart, isLoading: isCartLoading } = useCart();
+  const { mutate: addToCart, isPending: isAdding } = useAddToCart();
+  const { mutate: updateQuantity, isPending: isUpdating } = useUpdateCartItem();
+
+  const handleAddToCartClick = () => {
+    const existingItem = cart?.items?.find((item) => item.productId === id);
+    if (existingItem) {
+      updateQuantity({
+        productId: existingItem.productId,
+        newQuantity: existingItem.quantity + 1,
+      });
+      // console.log("inside update");
+    } else {
+      // console.log("inside new add");
+      const cartProduct = {
+        name,
+        price,
+        img,
+        productId: id,
+      };
+      addToCart(cartProduct);
+    }
+  };
+
+  const isPending = isCartLoading || isAdding || isUpdating;
+
   return (
     <div className="product-container">
       <Link to={`/product/${id}`}>
@@ -42,7 +69,7 @@ const Product = ({ name, price, img, id }) => {
         </Link>
         <div className="price-cart">
           <span>₹{price}</span>
-          <button onClick={() => addToCart(id)} disabled={isPending}>
+          <button onClick={handleAddToCartClick} disabled={isPending}>
             <img src="./icons/cart.png" width="15px" />
             {isPending ? "Adding in cart..." : "Add to cart"}
           </button>

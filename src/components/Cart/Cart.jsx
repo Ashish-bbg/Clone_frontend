@@ -1,58 +1,84 @@
 import "./Cart.css";
 import { useCart } from "../../queries/useCart";
-import { useEffect, useState } from "react";
-import { deleteCartItem } from "../../api/cartApi";
-import { useAddToCart } from "../../hooks/useAddToCart";
+import { useDeleteFromCart } from "../../hooks/useDeleteFromCart";
+import { useUpdateCartItem } from "../../hooks/useUpdateCartItem";
 
 const Cart = () => {
-  const [priceQuantity, setPriceQuantity] = useState({});
-
   const { data, isLoading, error } = useCart();
-  // const { mutate: addToCart, isPending } = useAddToCart();
-  useEffect(() => {
-    if (data) {
-      setPriceQuantity({
-        totalAmount: data?.totalAmount,
-        totalQuantity: data?.totalItems,
-      });
-    }
-  }, [data]);
+  // console.log(data.items.length);
+  // 1. calling mutation to delete cart item
+  const { mutate: deleteItem, isPending: isDeleting } = useDeleteFromCart();
+
+  const { mutate: updateQuantity } = useUpdateCartItem();
 
   if (isLoading) return <h1>Loading...</h1>;
-  if (error) return <h1>Something went wrong while fetching products.</h1>;
+  if (error) return <h1>Cart is Empty please add some items</h1>;
 
   const cartItem = data?.items || [];
+  const totalQuantity = data?.items?.length || 0;
+  const totalAmount = data?.totalAmount || 0;
 
-  const handleDelete = async (productId) => {
-    console.log(productId);
-    console.log("preparing to delete this..");
-    const data = await deleteCartItem(productId);
-    console.log(data);
+  // console.log(cartItem);
+  const handleDelete = (productId) => {
+    deleteItem(productId);
+  };
+
+  const handleDecrease = (productId, quantity) => {
+    if (quantity === 1) deleteItem(productId);
+    else updateQuantity({ productId, newQuantity: quantity - 1 });
+  };
+  const handleIncrease = (productId, quantity) => {
+    updateQuantity({ productId, newQuantity: quantity + 1 });
   };
 
   return (
     <div className="cart-container">
-      <h4>Shopping Cart ({priceQuantity.totalQuantity})</h4>
+      <h4>Shopping Cart ({totalQuantity})</h4>
       <div className="cart-parent">
         <div className="cart-left">
           <div className="cart-items">
             {cartItem?.map((item) => (
-              <div className="cart-item" key={item.productId}>
-                <img src={item.images[0]} alt="img" width="60px" />
+              <div className="cart-item" key={item?.productId}>
+                <img
+                  src={item?.img ?? item?.images[0]}
+                  alt="img"
+                  width="60px"
+                />
                 <div className="cart-desc">
-                  <p>{item.name}</p>
+                  <p>{item?.name}</p>
                   <button className="fav-btn">Add to Favourites</button>
-                  <button onClick={() => handleDelete(item.productId)}>
-                    ❌Remove
+                  <button
+                    onClick={() => handleDelete(item?.productId)}
+                    disabled={isDeleting}
+                  >
+                    <img src="../icons/cross.png" height="12px" /> Remove
                   </button>
                 </div>
                 <div className="cart-count">
-                  <button>-</button>
+                  <button
+                    className="decrease-btn"
+                    onClick={() =>
+                      handleDecrease(item.productId, item.quantity)
+                    }
+                  >
+                    {item.quantity > 1 ? (
+                      "-"
+                    ) : (
+                      <img src="../icons/trash.png" height="12px" />
+                    )}
+                  </button>
+
                   <span>{item.quantity}</span>
-                  <button>+</button>
+                  <button
+                    onClick={() =>
+                      handleIncrease(item.productId, item.quantity)
+                    }
+                  >
+                    +
+                  </button>
                 </div>
                 <div className="cart-price">
-                  <span>{item.price}₹</span>
+                  <span>{item?.price}₹</span>
                 </div>
               </div>
             ))}
@@ -64,7 +90,7 @@ const Cart = () => {
             <div className="cart-total">
               <div className="cart-flex">
                 <span>Original Price</span>
-                <span>{priceQuantity.totalAmount}₹</span>
+                <span>{totalAmount}₹</span>
               </div>
               <div className="cart-flex">
                 <span>Savings</span>
@@ -81,7 +107,7 @@ const Cart = () => {
               <hr />
               <div className="cart-flex">
                 <span>Total</span>
-                <span>{priceQuantity.totalAmount}₹</span>
+                <span>{totalAmount}₹</span>
               </div>
               <button>Proceed to Checkout</button>
             </div>

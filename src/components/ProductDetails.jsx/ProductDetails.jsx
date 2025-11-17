@@ -5,18 +5,26 @@ import { useAddToCart } from "../../hooks/useAddToCart";
 const ProductDetails = () => {
   const { id } = useParams();
   const { data: product, isLoading, isError, error } = useProductById(id);
-
+  // console.log(product);
   const { mutate: addToCart, isPending } = useAddToCart();
-  // console.log(cart);
 
   if (isLoading) return <h2>Loading...</h2>;
   if (isError) return <h2>{error?.message || "Something went wrong"}</h2>;
   if (!product) return <h2>Product not found</h2>;
+  // console.log(product);
+  const cartProduct = {
+    // ...product,
+    name: product.name,
+    quantity: product.quantity,
+    price: product.price,
+    img: product.images?.[0],
+    productId: product?._id,
+  };
 
   return (
     <div className="product-details-container">
       <div className="product-left">
-        <img src={product.images[0]} alt="product image" width="30%" />
+        <img src={product.images?.[0]} alt="product image" width="30%" />
       </div>
       <div className="product-right">
         <div className="product-details">
@@ -43,7 +51,7 @@ const ProductDetails = () => {
               />
               Add to favourites
             </button>
-            <button onClick={() => addToCart(id)} disabled={isPending}>
+            <button onClick={() => addToCart(cartProduct)} disabled={isPending}>
               <img src="../icons/cart.png" width="15px" />
               {isPending ? "Adding in cart..." : "Add to cart"}
             </button>
