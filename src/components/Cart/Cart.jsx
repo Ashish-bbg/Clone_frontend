@@ -2,6 +2,7 @@ import "./Cart.css";
 import { useCart } from "../../queries/useCart";
 import { useDeleteFromCart } from "../../hooks/useDeleteFromCart";
 import { useUpdateCartItem } from "../../hooks/useUpdateCartItem";
+import { Link } from "react-router-dom";
 
 const Cart = () => {
   const { data, isLoading, error } = useCart();
@@ -109,7 +110,9 @@ const Cart = () => {
                 <span>Total</span>
                 <span>{totalAmount}₹</span>
               </div>
-              <button>Proceed to Checkout</button>
+              <Link to="/checkout">
+                <button>Proceed to Checkout</button>
+              </Link>
             </div>
           </div>
         </div>

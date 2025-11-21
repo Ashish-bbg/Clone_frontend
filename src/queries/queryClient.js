@@ -8,7 +8,11 @@ export const queryClient = new QueryClient({
     queries: {
       staleTime: 1000 * 60 * 30,
       cacheTime: 1000 * 60 * 60,
-      retry: 1,
+      retry: (failureCount, error) => {
+        // Don't retry if the error is a "CancelledError"
+        if (error.message === "CancelledError") return false;
+        return failureCount < 3;
+      },
       refetchOnWindowFocus: false,
     },
   },

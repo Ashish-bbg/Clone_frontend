@@ -1,0 +1,314 @@
+/* ---- Main Layout ---- */
+
+.checkout-parent {
+  display: flex;
+  justify-content: space-between;
+  gap: 30px;
+  padding: 30px;
+  max-width: 1200px;
+  margin: auto;
+  font-family: Arial, sans-serif;
+}
+
+.checkout-address-left,
+.checkout-details-right {
+  background: #fff;
+  padding: 22px;
+  border-radius: 14px;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* LEFT 40%, RIGHT 60% */
+
+.checkout-address-left {
+  width: 40%;
+}
+
+.checkout-details-right {
+  width: 60%;
+}
+
+/* ---- FORM ---- */
+
+.address-container h4 {
+  margin-bottom: 15px;
+  font-size: 20px;
+  font-weight: 600;
+  color: #333;
+}
+
+/* Space between form fields */
+.address-container form > div {
+  margin-bottom: 16px;
+}
+
+/* Label styling */
+.address-container label {
+  margin-bottom: 5px;
+  font-size: 14px;
+  color: #444;
+}
+
+/* Input/select/textarea styling */
+.address-container input,
+.address-container select,
+.address-container textarea {
+  padding: 8px 10px;
+  border-radius: 6px;
+  border: 1px solid #d1d1d1;
+  outline: none;
+  font-size: 14px;
+  transition: 0.2s;
+  box-sizing: border-box;
+}
+
+.address-container input:focus,
+.address-container select:focus,
+.address-container textarea:focus {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.15);
+}
+
+/* 2-column rows */
+.seperate {
+  display: flex;
+  gap: 15px;
+}
+
+.seperate > div {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ---- SPACING + ALIGNMENT FOR SELECT + ADD BUTTON ---- */
+.form-top-bottom {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  position: relative;
+}
+
+/* Only the top Saved Address row gets horizontal label + button */
+.form-top-bottom:first-child label {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.form-top-bottom select {
+  width: 100%;
+}
+
+/* textarea size */
+textarea {
+  height: 90px;
+  resize: none;
+}
+
+/* ---- PRIMARY SUBMIT BUTTON ---- */
+.address-container button[type="submit"] {
+  width: 100%;
+  padding: 12px;
+  background: linear-gradient(135deg, #3b82f6, #2563eb);
+  border: none;
+  color: white;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: 0.25s ease;
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25);
+}
+
+.address-container button[type="submit"]:hover {
+  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(37, 99, 235, 0.32);
+}
+
+.address-container button[type="submit"]:active {
+  transform: scale(0.97);
+}
+
+/* ---- DELETE BUTTON ---- */
+.delete-btn {
+  width: 100%;
+  padding: 10px;
+  background: #ef4444;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  margin-top: 8px;
+  transition: 0.25s ease;
+  box-shadow: 0 4px 12px rgba(239, 68, 68, 0.22);
+  line-height: 1;
+}
+
+.delete-btn:hover {
+  background: #dc2626;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(220, 38, 38, 0.3);
+}
+
+.delete-btn:active {
+  transform: scale(0.97);
+}
+
+/* ---- SMALL ADD BUTTON (inline) ---- */
+.new_address_btn {
+  padding: 6px 12px;
+  background: #22c55e;
+  color: white;
+  font-size: 13px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-left: auto;
+  transition: 0.2s ease;
+  box-shadow: 0 3px 10px rgba(34, 197, 94, 0.25);
+}
+
+.new_address_btn:hover {
+  background: #16a34a;
+  transform: translateY(-1px);
+}
+
+.new_address_btn:active {
+  transform: scale(0.96);
+}
+
+/* ---- CHECKOUT CARD ITEMS ---- */
+
+/* delivery location */
+.delivery-preview {
+  background-color: #f9f9f9;
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  border: 1px solid #e0e0e0;
+}
+
+.delivery-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.shippping-to {
+  margin: 0;
+  color: #333;
+}
+
+.delivery-address {
+  font-size: 14px;
+  color: #555;
+  line-height: 1.6;
+}
+.delivery-phone {
+  color: #007185;
+  font-size: 13px;
+}
+
+.checkout-details-container {
+  margin-bottom: 20px;
+}
+
+.checkout {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 15px;
+  padding: 15px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.checkout:last-child {
+  border-bottom: none;
+}
+
+.checkout-prod-img {
+  width: 60px;
+  border-radius: 8px;
+}
+
+.checkout-title {
+  width: 60%;
+  font-size: 14px;
+  color: #444;
+  line-height: 1.4;
+}
+
+.checkout-quantity {
+  font-weight: 600;
+}
+
+.checkout-price {
+  font-weight: 700;
+  font-size: 16px;
+  color: #222;
+}
+
+/* ---- ORDER SUMMARY ---- */
+
+.order-summary-container h4 {
+  margin-bottom: 12px;
+  font-size: 20px;
+}
+
+.order-summary {
+  background: #fafafa;
+  padding: 20px;
+  border-radius: 14px;
+  border: 1px solid #eee;
+}
+
+.order-flex {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.order-summary hr {
+  border: none;
+  border-top: 1px solid #ddd;
+  margin: 12px 0;
+}
+
+.order-summary button {
+  width: 100%;
+  padding: 12px;
+  background: #3b89ff;
+  border: none;
+  color: white;
+  border-radius: 10px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.order-summary button:hover {
+  background: #2e71e0;
+}
+
+/* ---- RESPONSIVE ---- */
+
+@media (max-width: 850px) {
+  .checkout-parent {
+    flex-direction: column;
+  }
+
+  .checkout-address-left,
+  .checkout-details-right {
+    width: 100%;
+  }
+
+  .seperate {
+    flex-direction: column;
+  }
+}

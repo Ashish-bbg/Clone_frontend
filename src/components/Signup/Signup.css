@@ -37,7 +37,7 @@ h3 {
   width: 100%;
 }
 
-input {
+.input-group > input {
   width: 100%;
   padding: 12px 12px;
   font-size: 15px;
@@ -48,11 +48,11 @@ input {
   transition: border-color 0.2s ease;
 }
 
-input:focus {
+.input-group > input:focus {
   border-color: #007bff;
 }
 
-label {
+.input-group > label {
   position: absolute;
   top: 12px;
   left: 12px;
@@ -62,8 +62,8 @@ label {
   transition: 0.2s ease all;
 }
 
-input:focus + label,
-input:not(:placeholder-shown) + label {
+.input-group > input:focus + label,
+.input-group > input:not(:placeholder-shown) + label {
   top: -9px;
   left: 10px;
   font-size: 12px;
