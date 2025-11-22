@@ -13,6 +13,8 @@ const Checkout = () => {
   const { data: cartData } = useCart();
   const { mutate: placeOrder, isPending: isPlacingOrder } = usePlaceOrder();
   const [paymentMethod, setPaymentMethod] = useState("COD");
+  // 1. NEW STATE: Tracks the Razorpay script loading & API call time
+  const [isPaymentStart, setIsPaymentStart] = useState(false);
   // console.log(cartData);
 
   // handle place button on OrderSummary.jsx
@@ -34,10 +36,12 @@ const Checkout = () => {
     }
     // CASE 2. ONLINE
     if (paymentMethod === "UPI") {
+      setIsPaymentStart(true);
       // LOAD RAZORPAY SDK SCRIPT
       const isLoading = await loadRazorpayScript();
       if (!isLoading) {
         alert("Razorpay SDK failed to load. Check your internet connection.");
+        setIsPaymentStart(false);
         return;
       }
 
@@ -84,13 +88,15 @@ const Checkout = () => {
         // open razorpay options
         const rzp = new window.Razorpay(options);
         rzp.open();
+        setIsPaymentStart(false);
       } catch (error) {
         console.error("Payment initialization failed: ", error);
+        setIsPaymentStart(false);
         alert("Something went wrong starting the payment.");
       }
     }
   };
-
+  const isGlobalProcessing = isPlacingOrder || isPaymentStart;
   return (
     <div>
       <div className="checkout-parent">
@@ -100,7 +106,7 @@ const Checkout = () => {
           cartItem={cartData?.items || []}
           totalAmount={cartData?.totalAmount}
           handlePlaceOrder={handlePlaceOrder}
-          isProcessing={isPlacingOrder}
+          isProcessing={isGlobalProcessing}
           paymentMethod={paymentMethod}
           setPaymentMethod={setPaymentMethod}
         />
