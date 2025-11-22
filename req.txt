@@ -1,2 +1,26 @@
 https://flowbite.com/blocks/e-commerce/navbars/
 https://www.flaticon.com/search?word=orders&type=uicon
+
+
+{
+    "message": "Order placed Successfully",
+    "order": {
+        "userId": "68ea6bf74a9e69e32a3ed720",
+        "items": [
+            {
+                "productId": "68eb96d637d1d146eb2e383b",
+                "quantity": 2,
+                "price": 18499,
+                "_id": "692191d2712f837bca6e87af"
+            }
+        ],
+        "totalAmount": 36998,
+        "paymentMethod": "COD",
+        "status": "pending",
+        "shippingAddress": "69200e42be9994860e134e69",
+        "_id": "692191d2712f837bca6e87ae",
+        "createdAt": "2025-11-22T10:34:58.948Z",
+        "updatedAt": "2025-11-22T10:34:58.948Z",
+        "__v": 0
+    }
+}

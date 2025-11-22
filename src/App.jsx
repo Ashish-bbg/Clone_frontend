@@ -10,6 +10,9 @@ import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 import ProductDetails from "./components/ProductDetails.jsx/ProductDetails";
 import Checkout from "./components/Checkout/Checkout";
 import { Toaster } from "react-hot-toast";
+import OrderSuccess from "./components/Order/OrderSuccess";
+import Policy from "./pages/Policy";
+import Footer from "./pages/Footer";
 
 function App() {
   return (
@@ -23,6 +26,7 @@ function App() {
         <Route path="/product/:id" element={<ProductDetails />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/checkout" element={<Checkout />} />
+        <Route path="/order-success/:orderId" element={<OrderSuccess />} />
         <Route
           path="/account"
           element={
@@ -31,7 +35,14 @@ function App() {
             </ProtectedRoute>
           }
         />
+        {/* Dummy Pages for Razorpay Verification */}
+        <Route path="/terms-and-conditions" element={<Policy />} />
+        <Route path="/privacy-policy" element={<Policy />} />
+        <Route path="/refund-policy" element={<Policy />} />
+        <Route path="/shipping-policy" element={<Policy />} />
+        <Route path="/contact-us" element={<Policy />} />
       </Routes>
+      <Footer />
     </div>
   );
 }

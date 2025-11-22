@@ -19,7 +19,7 @@ const Cart = () => {
   const totalQuantity = data?.items?.length || 0;
   const totalAmount = data?.totalAmount || 0;
 
-  // console.log(cartItem);
+  // console.log(data);
   const handleDelete = (productId) => {
     deleteItem(productId);
   };

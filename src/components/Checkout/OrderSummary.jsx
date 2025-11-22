@@ -1,4 +1,12 @@
-const OrderSummary = ({ addressData, cartItem, totalAmount }) => {
+const OrderSummary = ({
+  addressData,
+  cartItem,
+  totalAmount,
+  handlePlaceOrder,
+  isProcessing,
+  paymentMethod,
+  setPaymentMethod,
+}) => {
   return (
     <div className="checkout-details-right">
       {(addressData.firstName || addressData.line1) && (
@@ -45,6 +53,59 @@ const OrderSummary = ({ addressData, cartItem, totalAmount }) => {
       </div>
       <div className="order-summary-container">
         <h4>Order Summary</h4>
+        <hr />
+        {/* payment selection area */}
+        <div className="payment-methods" style={{ margin: "15px 0" }}>
+          <h5 style={{ marginBottom: "10px", color: "#333" }}>
+            Payment Method
+          </h5>
+
+          {/* COD OPTION */}
+          <div
+            style={{
+              marginBottom: "8px",
+              display: "flex",
+              alignItems: "center",
+            }}
+          >
+            <input
+              type="radio"
+              id="cod"
+              name="payment"
+              value="COD"
+              checked={paymentMethod === "COD"}
+              onChange={(e) => setPaymentMethod(e.target.value)}
+              style={{ cursor: "pointer" }}
+            />
+            <label
+              htmlFor="cod"
+              style={{ marginLeft: "8px", cursor: "pointer", fontSize: "14px" }}
+            >
+              Cash on Delivery (COD)
+            </label>
+          </div>
+
+          {/* UPI / ONLINE OPTION */}
+          <div style={{ display: "flex", alignItems: "center" }}>
+            <input
+              type="radio"
+              id="upi"
+              name="payment"
+              value="UPI"
+              checked={paymentMethod === "UPI"}
+              onChange={(e) => setPaymentMethod(e.target.value)}
+              style={{ cursor: "pointer" }}
+            />
+            <label
+              htmlFor="upi"
+              style={{ marginLeft: "8px", cursor: "pointer", fontSize: "14px" }}
+            >
+              UPI / Online Payment
+            </label>
+          </div>
+        </div>
+
+        <hr />
         <div className="order-summary">
           <div className="order-flex">
             <span>Original price</span>
@@ -65,7 +126,21 @@ const OrderSummary = ({ addressData, cartItem, totalAmount }) => {
           </div>
         </div>
         <div className="order-flex mt-3">
-          <button>Continue to payment </button>
+          <button
+            className="place-order-btn"
+            onClick={handlePlaceOrder}
+            disabled={isProcessing}
+            style={{
+              opacity: isProcessing ? 0.7 : 1,
+              cursor: isProcessing ? "not-allowed" : "pointer",
+            }}
+          >
+            {isProcessing
+              ? "Placing Order..."
+              : paymentMethod === "COD"
+              ? "Place order"
+              : "Continue to payment"}
+          </button>
         </div>
       </div>
     </div>

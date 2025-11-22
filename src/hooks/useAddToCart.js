@@ -52,7 +52,7 @@ export const useAddToCart = () => {
         if (!oldData) return;
         // console.log(oldData);
         return {
-          // ...oldData,
+          ...oldData,
           name: oldData.name,
           price: oldData.price,
           items: oldData.items,
