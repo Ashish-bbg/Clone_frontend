@@ -59,7 +59,7 @@ const Checkout = () => {
 
           // success handle
           // runs after payment successfull
-          handle: function (resposne) {
+          handler: function (response) {
             // console.log("Payment ID:", response.razorpay_payment_id);
             // console.log("Order ID:", response.razorpay_order_id);
             // console.log("Signature:", response.razorpay_signature);
@@ -67,11 +67,11 @@ const Checkout = () => {
 
             placeOrder({
               shippingAddressId: addressId,
-              paymentMethod: "Online",
+              paymentMethod: "UPI",
               paymentResult: {
-                id: resposne.razorpay_payment_id,
-                orderId: Response.razorpay_order_id,
-                signature: resposne.razorpay_signature,
+                id: response.razorpay_payment_id,
+                orderId: response.razorpay_order_id,
+                signature: response.razorpay_signature,
                 status: "success",
               },
             });
