@@ -12,7 +12,7 @@ const Home = () => {
   // console.log(products[0]);
   // const myId = "68eb96d637d1d146eb2e383b";
   // const product = useProductById(myId);
-  // console.log(product);
+  // console.log(products);
 
   return (
     <>

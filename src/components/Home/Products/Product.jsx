@@ -3,14 +3,20 @@ import "./Product.css";
 import { useAddToCart } from "../../../hooks/useAddToCart";
 import { useCart } from "../../../queries/useCart";
 import { useUpdateCartItem } from "../../../hooks/useUpdateCartItem";
+import { useAuth } from "../../../context/useAuth";
 
 const Product = ({ name, price, img, id }) => {
   // console.log(id);
-  const { data: cart, isLoading: isCartLoading } = useCart();
+  const { user } = useAuth();
+  const isLoggedIn = !!user;
+
+  const { data: cart, isLoading: isCartLoading } = useCart(isLoggedIn);
   const { mutate: addToCart, isPending: isAdding } = useAddToCart();
   const { mutate: updateQuantity, isPending: isUpdating } = useUpdateCartItem();
 
+  // console.log(user); // giving obj like name, address, email etc if loggin else nothing
   const handleAddToCartClick = () => {
+    if (!isLoggedIn) return;
     const existingItem = cart?.items?.find((item) => item.productId === id);
     if (existingItem) {
       updateQuantity({
@@ -25,12 +31,14 @@ const Product = ({ name, price, img, id }) => {
         price,
         img,
         productId: id,
+        quantity: 1,
       };
       addToCart(cartProduct);
     }
   };
 
-  const isPending = isCartLoading || isAdding || isUpdating;
+  const isActionProcessing = isAdding || isUpdating;
+  const isButtonDisabled = isCartLoading || isActionProcessing;
 
   return (
     <div className="product-container">
@@ -69,10 +77,12 @@ const Product = ({ name, price, img, id }) => {
         </Link>
         <div className="price-cart">
           <span>₹{price}</span>
-          <button onClick={handleAddToCartClick} disabled={isPending}>
-            <img src="./icons/cart.png" width="15px" />
-            {isPending ? "Adding in cart..." : "Add to cart"}
-          </button>
+          {isLoggedIn && (
+            <button onClick={handleAddToCartClick} disabled={isButtonDisabled}>
+              <img src="./icons/cart.png" width="15px" />
+              {isActionProcessing ? "Adding in cart..." : "Add to cart"}
+            </button>
+          )}
         </div>
       </div>
     </div>

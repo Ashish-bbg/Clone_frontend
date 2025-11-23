@@ -52,11 +52,11 @@ export const useAddToCart = () => {
         if (!oldData) return;
         // console.log(oldData);
         return {
-          ...oldData,
-          name: oldData.name,
-          price: oldData.price,
+          // ...oldData,
+          // name: oldData.name,
+          // price: oldData.price,
           items: oldData.items,
-          img: oldData.images?.[0],
+          // img: oldData.images?.[0],
           totalAmount: data.totalAmount,
         };
       });

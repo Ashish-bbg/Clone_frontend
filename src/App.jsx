@@ -13,6 +13,7 @@ import { Toaster } from "react-hot-toast";
 import OrderSuccess from "./components/Order/OrderSuccess";
 import Policy from "./pages/Policy";
 import Footer from "./pages/Footer";
+import PageNotFound from "./pages/PageNotFound";
 
 function App() {
   return (
@@ -20,27 +21,28 @@ function App() {
       <Toaster position="top-center" reverseOrder={false} />
       <Navbar />
       <Routes>
+        {/* Public routes */}
         <Route path="/" element={<Home />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
         <Route path="/product/:id" element={<ProductDetails />} />
-        <Route path="/cart" element={<Cart />} />
-        <Route path="/checkout" element={<Checkout />} />
-        <Route path="/order-success/:orderId" element={<OrderSuccess />} />
-        <Route
-          path="/account"
-          element={
-            <ProtectedRoute>
-              <Account />
-            </ProtectedRoute>
-          }
-        />
+
         {/* Dummy Pages for Razorpay Verification */}
         <Route path="/terms-and-conditions" element={<Policy />} />
         <Route path="/privacy-policy" element={<Policy />} />
         <Route path="/refund-policy" element={<Policy />} />
         <Route path="/shipping-policy" element={<Policy />} />
         <Route path="/contact-us" element={<Policy />} />
+
+        {/* Protected routes */}
+        <Route element={<ProtectedRoute />}>
+          <Route path="/cart" element={<Cart />} />
+          <Route path="/checkout" element={<Checkout />} />
+          <Route path="/order-success/:orderId" element={<OrderSuccess />} />
+          <Route path="/account" element={<Account />} />
+        </Route>
+
+        <Route path="*" element={<PageNotFound />} />
       </Routes>
       <Footer />
     </div>

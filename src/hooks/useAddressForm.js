@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useGetAddresses } from "../queries/useGetAddresses";
 import { useCreateAddress } from "./useCreateAddress";
 import { useDeleteAddress } from "./useDeleteAddress";
@@ -28,6 +28,27 @@ export const useAddressForm = () => {
   const [addressData, setAddressData] = useState(INITIAL_ADDRESS_STATE);
   const [selectedEditId, setSelectedEditId] = useState(null);
 
+  const [hasInitialFill, setHasInitialFill] = useState(false);
+
+  // autofill adress if availabe
+  useEffect(() => {
+    if (!isLoadingAddress && addresses.length > 0 && !hasInitialFill) {
+      const firstAddress = addresses[0];
+      setSelectedEditId(firstAddress._id);
+      const nameParts = firstAddress.name?.split(" ");
+      setAddressData({
+        firstName: nameParts?.[0] || "",
+        lastName: nameParts?.slice(1).join(" ") || "",
+        phoneNumber: firstAddress.phoneNumber,
+        line1: firstAddress.line1,
+        city: firstAddress.city,
+        state: firstAddress.state,
+        zip: firstAddress.zip,
+        country: firstAddress.country,
+      });
+      setHasInitialFill(true);
+    }
+  }, [addresses, isLoadingAddress, hasInitialFill]);
   //   3. All function
   //   1. reset form
   const handleReset = () => {

@@ -11,13 +11,13 @@ const AddressForm = ({
   handleDelete,
   handleSubmit,
 }) => {
+  // console.log(addresses);
   return (
     <div className="checkout-address-left">
       <div className="address-container">
         <h4>Shipping address</h4>
         <form onSubmit={handleSubmit}>
           <div className="form-top-bottom">
-            <label htmlFor="saved-address">Saved address</label>
             {selectedEditId && (
               <button
                 type="button"
@@ -27,23 +27,28 @@ const AddressForm = ({
                 + Add New Address
               </button>
             )}
-            <select
-              name="saved-address"
-              id="saved-address"
-              onChange={handleSelectAddress}
-              disabled={isLoadingAddress}
-            >
-              <option value="">
-                {isLoadingAddress
-                  ? "Loading addressess..."
-                  : "Choose one of your saved address"}
-              </option>
-              {addresses.map((addr) => (
-                <option key={addr._id} value={addr._id}>
-                  {addr.name} - {addr.city}, {addr.zip}
-                </option>
-              ))}
-            </select>
+            {addresses.length > 0 && (
+              <div>
+                <label htmlFor="saved-address">Saved address</label>
+                <select
+                  name="saved-address"
+                  id="saved-address"
+                  onChange={handleSelectAddress}
+                  disabled={isLoadingAddress}
+                >
+                  <option value="">
+                    {isLoadingAddress
+                      ? "Loading addressess..."
+                      : "Choose one of your saved address"}
+                  </option>
+                  {addresses.map((addr) => (
+                    <option key={addr._id} value={addr._id}>
+                      {addr.name} - {addr.city}, {addr.zip}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            )}
           </div>
           <div className="seperate">
             <div>
