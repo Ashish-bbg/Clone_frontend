@@ -15,7 +15,8 @@ const ProductDetails = () => {
   const cartProduct = {
     // ...product,
     name: product.name,
-    quantity: product.quantity,
+    // quantity: product.quantity,
+    quantity: 1,
     price: product.price,
     img: product.images?.[0],
     productId: product?._id,
