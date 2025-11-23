@@ -3,6 +3,8 @@ import { useProductById } from "../../queries/useProductsById";
 import "./ProductDetails.css";
 import { useAddToCart } from "../../hooks/useAddToCart";
 import { useAuth } from "../../context/useAuth";
+import { useUpdateCartItem } from "../../hooks/useUpdateCartItem";
+import { useCart } from "../../queries/useCart";
 const ProductDetails = () => {
   const { user } = useAuth();
   const isLoggedIn = !!user;
@@ -10,22 +12,41 @@ const ProductDetails = () => {
   const { id } = useParams();
   const { data: product, isLoading, isError, error } = useProductById(id);
   // console.log(product);
-  const { mutate: addToCart, isPending } = useAddToCart();
+
+  const { data: cart, isLoading: isCartLoading } = useCart(isLoggedIn);
+
+  const { mutate: addToCart, isPending: isAdding } = useAddToCart();
+  const { mutate: updateQuantity, isPending: isUpdating } = useUpdateCartItem();
 
   if (isLoading) return <h2>Loading...</h2>;
   if (isError) return <h2>{error?.message || "Something went wrong"}</h2>;
   if (!product) return <h2>Product not found</h2>;
 
-  // console.log(product);
-  const cartProduct = {
-    // ...product,
-    name: product.name,
-    // quantity: product.quantity,
-    quantity: 1,
-    price: product.price,
-    img: product.images?.[0],
-    productId: product?._id,
+  const handleAddToCartClick = () => {
+    if (!isLoggedIn) return;
+    const existingItem = cart?.items?.find((item) => item.productId === id);
+    if (existingItem) {
+      // updateQuantity
+      updateQuantity({
+        productId: existingItem.productId,
+        newQuantity: existingItem.quantity + 1,
+      });
+    } else {
+      const cartProduct = {
+        name: product.name,
+        quantity: 1,
+        price: product.price,
+        img: product.images?.[0],
+        productId: product?._id,
+      };
+      addToCart(cartProduct);
+    }
   };
+
+  const isActionProcessing = isAdding || isUpdating;
+  const isButtonDisabled = isCartLoading || isActionProcessing;
+
+  // console.log(product);
 
   return (
     <div className="product-details-container">
@@ -57,13 +78,13 @@ const ProductDetails = () => {
               />
               Add to favourites
             </button>
-            {!isLoggedIn && (
+            {isLoggedIn && (
               <button
-                onClick={() => addToCart(cartProduct)}
-                disabled={isPending}
+                onClick={handleAddToCartClick}
+                disabled={isButtonDisabled}
               >
                 <img src="../icons/cart.png" width="15px" />
-                {isPending ? "Adding in cart..." : "Add to cart"}
+                {isActionProcessing ? "Adding in cart..." : "Add to cart"}
               </button>
             )}
           </div>

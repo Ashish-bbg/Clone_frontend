@@ -1,3 +1,19 @@
+.empty-cart-container {
+  text-align: center;
+  margin-top: 50px;
+}
+
+.empty-cart-btn {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #232f3e;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  width: fit-content;
+}
+
 .cart-container {
   max-width: 1200px;
   margin: 40px auto;

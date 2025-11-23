@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 
 const Cart = () => {
   const { data, isLoading, error } = useCart();
+
   // console.log(data.items.length);
   // 1. calling mutation to delete cart item
   const { mutate: deleteItem, isPending: isDeleting } = useDeleteFromCart();
@@ -18,6 +19,19 @@ const Cart = () => {
   const cartItem = data?.items || [];
   const totalQuantity = data?.items?.length || 0;
   const totalAmount = data?.totalAmount || 0;
+
+  if (cartItem.length === 0) {
+    return (
+      <div className="empty-cart-container">
+        <img src="../icons/empty-cart.png" alt="Empty Cart" width="150px" />
+        <h2>Your Cart is Empty</h2>
+        <p>Looks like you haven't added anything to your cart yet.</p>
+        <Link to="/">
+          <button className="empty-cart-btn">Continue Shopping</button>
+        </Link>
+      </div>
+    );
+  }
 
   // console.log(data);
   const handleDelete = (productId) => {
