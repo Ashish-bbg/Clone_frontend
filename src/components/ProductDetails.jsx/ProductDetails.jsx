@@ -2,7 +2,11 @@ import { useParams } from "react-router-dom";
 import { useProductById } from "../../queries/useProductsById";
 import "./ProductDetails.css";
 import { useAddToCart } from "../../hooks/useAddToCart";
+import { useAuth } from "../../context/useAuth";
 const ProductDetails = () => {
+  const { user } = useAuth();
+  const isLoggedIn = !!user;
+
   const { id } = useParams();
   const { data: product, isLoading, isError, error } = useProductById(id);
   // console.log(product);
@@ -11,6 +15,7 @@ const ProductDetails = () => {
   if (isLoading) return <h2>Loading...</h2>;
   if (isError) return <h2>{error?.message || "Something went wrong"}</h2>;
   if (!product) return <h2>Product not found</h2>;
+
   // console.log(product);
   const cartProduct = {
     // ...product,
@@ -52,10 +57,15 @@ const ProductDetails = () => {
               />
               Add to favourites
             </button>
-            <button onClick={() => addToCart(cartProduct)} disabled={isPending}>
-              <img src="../icons/cart.png" width="15px" />
-              {isPending ? "Adding in cart..." : "Add to cart"}
-            </button>
+            {!isLoggedIn && (
+              <button
+                onClick={() => addToCart(cartProduct)}
+                disabled={isPending}
+              >
+                <img src="../icons/cart.png" width="15px" />
+                {isPending ? "Adding in cart..." : "Add to cart"}
+              </button>
+            )}
           </div>
         </div>
         <hr />
