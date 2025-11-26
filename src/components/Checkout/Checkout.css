@@ -81,6 +81,10 @@
   flex-direction: column;
 }
 
+.prod-link:hover {
+  text-decoration: underline;
+}
+
 /* ---- SPACING + ALIGNMENT FOR SELECT + ADD BUTTON ---- */
 .form-top-bottom {
   display: flex;
@@ -107,7 +111,8 @@ textarea {
 }
 
 /* ---- PRIMARY SUBMIT BUTTON ---- */
-.address-container button[type="submit"] {
+.address-container button[type="submit"],
+.place-order-btn {
   width: 100%;
   padding: 12px;
   background: linear-gradient(135deg, #3b82f6, #2563eb);
@@ -119,6 +124,7 @@ textarea {
   cursor: pointer;
   margin-top: 10px;
   transition: 0.25s ease;
+  /* transition: all 0.3s ease-in-out; */
   box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25);
 }
 
@@ -126,6 +132,10 @@ textarea {
   background: linear-gradient(135deg, #2563eb, #1d4ed8);
   transform: translateY(-2px);
   box-shadow: 0 6px 16px rgba(37, 99, 235, 0.32);
+}
+
+.place-order-btn:hover {
+  background-color: #1d4ed8;
 }
 
 .address-container button[type="submit"]:active {
@@ -280,7 +290,7 @@ textarea {
   margin: 12px 0;
 }
 
-.order-summary button {
+.place-order-btn {
   width: 100%;
   padding: 12px;
   background: #3b89ff;
@@ -292,7 +302,7 @@ textarea {
   transition: 0.2s;
 }
 
-.order-summary button:hover {
+.place-order-btn {
   background: #2e71e0;
 }
 

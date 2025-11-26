@@ -60,7 +60,9 @@ const Cart = () => {
                   width="60px"
                 />
                 <div className="cart-desc">
-                  <p>{item?.name}</p>
+                  <Link to={`/product/${item.productId}`} className="prod-link">
+                    <p>{item?.name}</p>
+                  </Link>
                   <button className="fav-btn">Add to Favourites</button>
                   <button
                     onClick={() => handleDelete(item?.productId)}
@@ -125,7 +127,7 @@ const Cart = () => {
                 <span>{totalAmount}₹</span>
               </div>
               <Link to="/checkout">
-                <button>Proceed to Checkout</button>
+                <button className="checkout-btn">Proceed to Checkout</button>
               </Link>
             </div>
           </div>

@@ -14,6 +14,8 @@ import OrderSuccess from "./components/Order/OrderSuccess";
 import Policy from "./pages/Policy";
 import Footer from "./pages/Footer";
 import PageNotFound from "./pages/PageNotFound";
+import MyOrder from "./components/Order/MyOrder";
+import OrderDetails from "./components/Order/OrderDetails";
 
 function App() {
   return (
@@ -33,6 +35,8 @@ function App() {
         <Route path="/refund-policy" element={<Policy />} />
         <Route path="/shipping-policy" element={<Policy />} />
         <Route path="/contact-us" element={<Policy />} />
+        <Route path="/my-orders" element={<MyOrder />} />
+        <Route path="/my-order/:id" element={<OrderDetails />} />
 
         {/* Protected routes */}
         <Route element={<ProtectedRoute />}>

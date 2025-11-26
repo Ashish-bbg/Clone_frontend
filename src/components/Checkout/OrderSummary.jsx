@@ -1,3 +1,5 @@
+import OrderItem from "../OrderItem";
+
 const OrderSummary = ({
   addressData,
   cartItem,
@@ -33,24 +35,7 @@ const OrderSummary = ({
           </div>
         </div>
       )}
-      <div className="checkout-details-container">
-        {cartItem.map((cart) => (
-          <div className="checkout" key={cart.productId}>
-            <img
-              src={cart?.images?.[0] || cart.img}
-              alt="cart item image"
-              className="checkout-prod-img"
-            />
-            <p className="checkout-title">{cart.name}</p>
-            {cart.quantity > 1 && (
-              <span className="checkout-quantity">x{cart.quantity}</span>
-            )}
-            <span className="checkout-price">
-              ₹{cart.price * cart.quantity}
-            </span>
-          </div>
-        ))}
-      </div>
+      <OrderItem items={cartItem} />
       <div className="order-summary-container">
         <h4>Order Summary</h4>
         <hr />

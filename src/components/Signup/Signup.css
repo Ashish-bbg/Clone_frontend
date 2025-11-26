@@ -72,7 +72,7 @@ h3 {
   color: #007bff;
 }
 
-button {
+.signup-btnn {
   background-color: #007bff;
   color: #ffffff;
   font-weight: 500;
@@ -84,7 +84,7 @@ button {
   transition: background-color 0.2s ease, transform 0.1s ease;
 }
 
-button:hover {
+.signup-btnn:hover {
   cursor: pointer;
   background-color: #0866e2;
   transform: scale(1.02);

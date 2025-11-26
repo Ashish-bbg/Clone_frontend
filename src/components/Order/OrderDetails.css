@@ -1,0 +1,232 @@
+/* ---- GLOBAL & CONTAINER ---- */
+.order-track-container {
+  max-width: 1100px;
+  margin: 40px auto;
+  padding: 30px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #ffffff;
+  border-radius: 16px;
+  /* Soft shadow for the whole page card effect */
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+}
+
+.order-track-container h3 {
+  margin-bottom: 20px;
+  color: #333;
+  font-size: 22px;
+  font-weight: 700;
+}
+
+/* ---- TOP TRACK TIMELINE ---- */
+.order-track {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 40px;
+  padding: 30px 20px;
+  background: #fff;
+  border-radius: 12px;
+  /* Removed border, added shadow for floating effect */
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+  position: relative;
+}
+
+.order-track-status {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  width: 20%;
+  position: relative;
+  z-index: 1; /* Keeps icons on top of the line */
+}
+
+/***************************/
+/* 1. Default State (Future Steps) - Faded Out */
+.order-track-status {
+  /* ... keep existing styles ... */
+  opacity: 0.5; /* Dim future steps */
+}
+
+.order-track-status img {
+  /* ... keep existing styles ... */
+  filter: grayscale(100%); /* Make icons black & white */
+  transition: all 0.3s ease;
+}
+
+/* 2. Active State (Completed Steps) - Full Color */
+.order-track-status.active {
+  opacity: 1; /* Full visibility */
+}
+
+.order-track-status.active img {
+  filter: grayscale(0%); /* Restore original color */
+  transform: scale(1.1); /* Slight pop effect */
+}
+
+.order-track-status.active span:last-of-type {
+  color: #2563eb; /* Make status text Blue */
+}
+
+/* 3. The Connecting Line Logic */
+/* If the step is active, make its line Blue */
+.order-track-status.active::after {
+  background: #2563eb;
+}
+
+/* BUT, if it's the *last* active step (current stage), keep the line gray 
+   because we haven't reached the next step yet */
+.order-track-status.active:last-of-type::after {
+  background: #e0e0e0;
+}
+/***************************/
+
+/* Icons */
+.order-track-status img {
+  margin-bottom: 12px;
+  width: 30%; /* Fixed size for consistency */
+  height: 25%;
+  object-fit: contain;
+  background: #fff; /* Background hides the line behind icon */
+  padding: 0 5px;
+}
+
+/* Dates (Top text) */
+.order-track-status span:first-of-type {
+  font-size: 13px;
+  color: #888;
+  margin-bottom: 6px;
+  font-weight: 500;
+}
+
+/* Status (Bottom text) */
+.order-track-status span:last-of-type {
+  font-size: 15px;
+  font-weight: 700;
+  color: #2c3e50;
+}
+
+/* Connecting Line */
+.order-track-status::after {
+  content: "";
+  position: absolute;
+  /* Adjusted top to align exactly with the center of the icon */
+  top: 16px;
+  right: -50%;
+  width: 100%;
+  height: 3px;
+  background: #e0e0e0;
+  z-index: -1; /* Puts line behind the icon */
+}
+
+.order-track-status:last-child::after {
+  display: none;
+}
+
+/* ---- ITEMS + ORDER DETAILS SECTION ---- */
+.order-track-items {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start; /* Aligns boxes to top */
+  gap: 30px;
+  margin-top: 20px;
+}
+
+/* Left: Order Items List */
+.order-items {
+  flex: 1;
+  background: #fff;
+  border: 1px solid #eee;
+  border-radius: 12px;
+  padding: 25px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.02);
+}
+
+/* Right: Order Details Card */
+.order-track-details {
+  width: 450px; /* Fixed width for the summary card looks neater */
+  background: #f9fbfd; /* Very subtle blue-grey background */
+  border: 1px solid #eef2f6;
+  border-radius: 12px;
+  padding: 25px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.02);
+}
+
+.order-track-details h3 {
+  margin-top: 0;
+  font-size: 18px;
+  border-bottom: 2px solid #e0e0e0;
+  padding-bottom: 15px;
+  margin-bottom: 20px;
+  color: #444;
+}
+
+/* Data Rows */
+.order-track-data {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start; /* Allows address to wrap nicely */
+  padding: 12px 0;
+  font-size: 14px;
+  border-bottom: 1px dashed #e0e0e0; /* Dashed lines look like a receipt */
+}
+
+.order-track-data:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+  margin-top: 10px;
+}
+
+/* Labels */
+.order-track-data span:first-child {
+  color: #666;
+  font-weight: 500;
+  min-width: 100px; /* Ensures alignment */
+}
+
+/* Values */
+.order-track-data span:last-child {
+  font-weight: 600;
+  color: #333;
+  text-align: right;
+  line-height: 1.5;
+}
+
+/* Total Price Specific Styling */
+.order-track-data strong {
+  font-size: 18px;
+  color: #2563eb; /* Nice blue for the total */
+}
+
+/* ---- RESPONSIVE ---- */
+@media (max-width: 768px) {
+  .order-track {
+    flex-direction: column;
+    gap: 20px;
+    align-items: flex-start;
+  }
+
+  .order-track-status {
+    width: 100%;
+    flex-direction: row;
+    text-align: left;
+    gap: 15px;
+  }
+
+  .order-track-status::after {
+    /* Change horizontal line to vertical line on mobile */
+    width: 3px;
+    height: 100%;
+    top: 20px;
+    left: 15px; /* Align with icon center */
+    right: auto;
+  }
+
+  .order-track-items {
+    flex-direction: column;
+  }
+
+  .order-items,
+  .order-track-details {
+    width: 100%;
+  }
+}

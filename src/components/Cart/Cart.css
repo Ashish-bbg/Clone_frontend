@@ -138,6 +138,7 @@
   padding: 5px 10px;
   cursor: pointer;
   font-size: 16px;
+  border: none;
 }
 
 .cart-count button:hover {
@@ -187,7 +188,8 @@
 
 .cart-total button {
   background-color: #0077cc;
-  color: white;
+  color: rgb(255, 255, 255);
+  width: 100%;
   padding: 10px;
   border: none;
   border-radius: 8px;

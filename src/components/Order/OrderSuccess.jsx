@@ -1,8 +1,11 @@
-import { Link, useParams } from "react-router-dom";
+import { Link, useLocation, useParams } from "react-router-dom";
 import "./OrderSuccess.css";
 const OrderSuccess = () => {
   const { orderId } = useParams();
+  const location = useLocation();
 
+  const instantOrder = location.state?.orderData;
+  // console.log(instantOrder);
   return (
     <div className="order-success-container">
       {/* Success Icon */}
@@ -17,7 +20,8 @@ const OrderSuccess = () => {
         <span>Order ID: </span>
         <strong>{orderId}</strong>
       </div>
-
+      <p>Total Paid: ₹{instantOrder?.totalAmount}</p>
+      <p>Payment Mode: {instantOrder?.paymentMethod}</p>
       <p className="order-success-email">
         We will send you an email confirmation shortly.
       </p>

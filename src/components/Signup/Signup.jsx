@@ -83,6 +83,7 @@ const Signup = () => {
           </div>
           {error && <p style={{ color: "red" }}>{error}</p>}
           <button
+            className="signup-btnn"
             type="submit"
             disabled={isLoading}
             style={{

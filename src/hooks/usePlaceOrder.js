@@ -1,7 +1,7 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { placeOrder } from "../api/placeOrderApi";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import { placeOrder } from "../api/orderApi";
 
 export const usePlaceOrder = () => {
   const queryClient = useQueryClient();
@@ -16,7 +16,9 @@ export const usePlaceOrder = () => {
         // navigate to order_id page
         // console.log("order placed...");
         // console.log(data);
-        navigate(`/order-success/${data.order._id}`);
+        navigate(`/order-success/${data.order._id}`, {
+          state: { orderData: data.order },
+        });
       } else {
         navigate("/");
       }

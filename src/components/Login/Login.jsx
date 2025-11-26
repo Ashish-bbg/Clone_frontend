@@ -65,6 +65,7 @@ const Login = () => {
           </div>
           {error && <p style={{ color: "red" }}>{error}</p>}
           <button
+            className="login-btnn"
             type="submit"
             disabled={isLoading}
             style={{
