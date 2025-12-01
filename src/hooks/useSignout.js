@@ -11,8 +11,8 @@ export const useSignout = () => {
   const signout = async () => {
     try {
       setLoading(true);
-      await performLogout();
       setUser(null);
+      await performLogout();
       navigate("/");
     } catch (err) {
       console.error("Logout failed", err);

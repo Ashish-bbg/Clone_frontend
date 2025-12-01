@@ -29,24 +29,30 @@ const AddressForm = ({
             )}
             {addresses.length > 0 && (
               <div>
-                <label htmlFor="saved-address">Saved address</label>
-                <select
-                  name="saved-address"
-                  id="saved-address"
-                  onChange={handleSelectAddress}
-                  disabled={isLoadingAddress}
-                >
-                  <option value="">
-                    {isLoadingAddress
-                      ? "Loading addressess..."
-                      : "Choose one of your saved address"}
-                  </option>
-                  {addresses.map((addr) => (
-                    <option key={addr._id} value={addr._id}>
-                      {addr.name} - {addr.city}, {addr.zip}
-                    </option>
-                  ))}
-                </select>
+                {isLoadingAddress ? (
+                  <h4>Addressess loading...</h4>
+                ) : (
+                  <>
+                    <label htmlFor="saved-address">Saved address</label>
+                    <select
+                      name="saved-address"
+                      id="saved-address"
+                      onChange={handleSelectAddress}
+                      disabled={isLoadingAddress}
+                    >
+                      <option value="">
+                        {isLoadingAddress
+                          ? "Loading addressess..."
+                          : "Choose one of your saved address"}
+                      </option>
+                      {addresses.map((addr) => (
+                        <option key={addr._id} value={addr._id}>
+                          {addr.name} - {addr.city}, {addr.zip}
+                        </option>
+                      ))}
+                    </select>
+                  </>
+                )}
               </div>
             )}
           </div>

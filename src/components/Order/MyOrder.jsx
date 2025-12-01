@@ -6,22 +6,8 @@ import { formatDate } from "../../utiles/formatDate";
 const MyOrder = () => {
   const { data: myOrder, isLoading: orderLoading } = useGetPlacedOrder();
 
-  // const formatDate = (isoString) => {
-  //   if (!isoString) return "N/A";
-  //   const date = new Date(isoString);
-
-  //   return date.toLocaleString("en-IN", {
-  //     day: "numeric",
-  //     month: "short",
-  //     year: "2-digit",
-  //     hour: "2-digit",
-  //     minute: "2-digit",
-  //     hour12: true,
-  //   });
-  // };
-
   if (orderLoading) return <h2>Loading your orders...</h2>;
-  //   console.log(myOrder);
+  console.log(myOrder);
   return (
     <div className="my-order-container">
       <div className="my-order-filters">

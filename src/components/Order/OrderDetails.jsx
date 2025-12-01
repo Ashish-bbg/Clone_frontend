@@ -1,11 +1,13 @@
 import "./OrderDetails.css";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useGetOrderById } from "../../queries/useGetOrderById";
 import { formatDate } from "../../utiles/formatDate";
 import OrderItem from "../OrderItem";
+import { useQueryClient } from "@tanstack/react-query";
 
 const OrderDetails = () => {
   const { id } = useParams();
+  const queryClient = useQueryClient();
   const { data: order, isLoading, isError } = useGetOrderById(id);
 
   if (isLoading) {
@@ -15,15 +17,32 @@ const OrderDetails = () => {
   if (isError || !order) {
     return <h1>Order not found</h1>;
   }
-  //   console.log(order);
+  // console.log(order);
 
-  const formattedItems = order.items.map((item) => ({
-    productId: item.productId?._id,
-    name: item.productId?.name,
-    price: item.price,
-    quantity: item.quantity,
-    img: item.productId?.images?.[0],
-  }));
+  const getCachedProductImage = (prodId) => {
+    const allProductsData = queryClient.getQueryData(["products"]);
+    const products = allProductsData?.products;
+    const foundProduct = products?.find((p) => p._id === prodId);
+
+    return foundProduct?.images?.[0];
+  };
+
+  const formattedItems = order.items.map((item) => {
+    const pId =
+      typeof item.productId === "object" ? item.productId?._id : item.productId;
+
+    const backendImage = item.productId?.images?.[0];
+    return {
+      productId: pId,
+      name: item.productId?.name,
+      price: item.price,
+      quantity: item.quantity,
+      img:
+        backendImage ||
+        getCachedProductImage(pId) ||
+        "../icons/new-product.png",
+    };
+  });
 
   const steps = [
     {

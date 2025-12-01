@@ -20,8 +20,11 @@ const Login = () => {
     setIsLoading(true);
     try {
       const response = await loginUser(formData);
-      console.log("Login successfull", response);
+      // console.log("Login successfull", response);
       setUser(response.userData);
+
+      // setting flag for logged_in_user
+      localStorage.setItem("is_logged_in", true);
       // alert("Login successfull");
       setTimeout(() => navigate("/"), 300);
     } catch (err) {

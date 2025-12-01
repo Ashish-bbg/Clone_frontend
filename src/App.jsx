@@ -35,8 +35,6 @@ function App() {
         <Route path="/refund-policy" element={<Policy />} />
         <Route path="/shipping-policy" element={<Policy />} />
         <Route path="/contact-us" element={<Policy />} />
-        <Route path="/my-orders" element={<MyOrder />} />
-        <Route path="/my-order/:id" element={<OrderDetails />} />
 
         {/* Protected routes */}
         <Route element={<ProtectedRoute />}>
@@ -44,8 +42,11 @@ function App() {
           <Route path="/checkout" element={<Checkout />} />
           <Route path="/order-success/:orderId" element={<OrderSuccess />} />
           <Route path="/account" element={<Account />} />
+          <Route path="/my-orders" element={<MyOrder />} />
+          <Route path="/my-order/:id" element={<OrderDetails />} />
         </Route>
 
+        {/* 404 Not Found route */}
         <Route path="*" element={<PageNotFound />} />
       </Routes>
       <Footer />
