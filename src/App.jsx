@@ -11,7 +11,7 @@ import MyOrder from "./components/OrderCard/MyOrder";
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 
 // Pages direct pages
-import Home from "./pages/home/Home";
+import Home from "./pages/Home/Home";
 import Signup from "./pages/Signup/Signup";
 import Login from "./pages/Login/Login";
 import Cart from "./pages/Cart/Cart";
