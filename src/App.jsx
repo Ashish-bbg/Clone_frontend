@@ -1,21 +1,25 @@
 import "./App.css";
-import { Route, Routes } from "react-router-dom";
-import Home from "./components/Home/Home";
-import Navbar from "./components/Navbar/Navbar";
-import Signup from "./components/Signup/Signup";
-import Login from "./components/Login/Login";
-import Account from "./components/Account/Account";
-import Cart from "./components/Cart/Cart";
-import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
-import ProductDetails from "./components/ProductDetails.jsx/ProductDetails";
-import Checkout from "./components/Checkout/Checkout";
 import { Toaster } from "react-hot-toast";
-import OrderSuccess from "./components/Order/OrderSuccess";
-import Policy from "./pages/Policy";
-import Footer from "./pages/Footer";
+import { Route, Routes } from "react-router-dom";
+
+// Components
+import Navbar from "./components/Navbar/Navbar";
+import Footer from "./components/Footer/Footer";
+import Policy from "./components/Footer/Policy";
+import Account from "./components/Account/Account";
+import MyOrder from "./components/OrderCard/MyOrder";
+import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
+
+// Pages direct pages
+import Home from "./pages/home/Home";
+import Signup from "./pages/Signup/Signup";
+import Login from "./pages/Login/Login";
+import Cart from "./pages/Cart/Cart";
+import OrderSuccess from "./pages/Order/OrderSuccess";
 import PageNotFound from "./pages/PageNotFound";
-import MyOrder from "./components/Order/MyOrder";
-import OrderDetails from "./components/Order/OrderDetails";
+import ProductDetails from "./pages/ProductDetails/ProductDetails";
+import Checkout from "./pages/Checkout/Checkout";
+import OrderDetails from "./pages/Order/OrderDetails";
 
 function App() {
   return (

@@ -1,7 +1,6 @@
 .account-parent {
   display: flex;
   width: 100%;
-  /* background: linear-gradient(135deg, #e3f2fd, #ffffff); */
 }
 
 .account-left {
@@ -9,9 +8,7 @@
   flex-direction: column;
   align-items: center;
   width: 30%;
-  /* border: 1px solid red; */
   margin: 2%;
-  /* box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); */
 }
 
 .account-right {
@@ -150,13 +147,16 @@
   padding: 20px;
   margin: 20px 0px;
   background-color: #ffffff;
+  border-radius: 10px;
 }
+
 h4 {
   margin-bottom: 15px;
   font-size: 1.2rem;
   font-weight: 600;
   color: #333;
 }
+
 .account-info {
   display: flex;
   justify-content: space-between;
@@ -207,63 +207,66 @@ h4 {
   padding: 20px;
   border-radius: 12px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-  margin-bottom: 20px;
+  margin: 2%;
+  margin-top: 0;
 }
 
-.order h4 {
+/* unused css will remove */
+
+/* .order h4 {
   margin-bottom: 15px;
   font-size: 1.2rem;
   font-weight: 600;
   color: #333;
-}
+} */
 
 /* Container for order items */
-.order-items {
+/* .order-items {
   display: flex;
   flex-direction: column;
   gap: 10px;
-}
+} */
 
 /* Individual order item */
-.order-item {
+/* .order-item {
   display: flex;
-  justify-content: space-between; /* spread columns evenly */
+  justify-content: space-between; 
   padding: 12px 15px;
   background-color: #f9f9f9;
   border-radius: 10px;
   align-items: center;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
+} */
 
-.order-item:hover {
+/* .order-item:hover {
   transform: translateY(-2px);
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-}
+} */
 
 /* Columns inside each order item */
-.order-column {
+/* .order-column {
   display: flex;
   flex-direction: column;
   gap: 4px;
-}
+} */
 
 /* Labels (Order ID, Date, Price, Status) */
-.order-column span:first-child {
+/* .order-column span:first-child {
   font-size: 0.85rem;
   color: #555;
   font-weight: 500;
-}
+} */
 
 /* Values (#QPELKD987SDNI, 28.09.2025, etc.) */
-.order-column span:last-child {
+/* .order-column span:last-child {
   font-size: 1rem;
   font-weight: 600;
   color: #222;
-}
+} */
 
 /* Divider between orders */
-.order-items hr {
+/* .order-items hr {
   border: none;
   border-top: 1px solid #e0e0e0;
   margin: 5px 0;
-}
+} */

@@ -2,9 +2,16 @@ import "./Account.css";
 import { useAuth } from "../../context/useAuth";
 import { useSignout } from "../../hooks/useSignout";
 import { Link } from "react-router-dom";
+import { useCart } from "../../queries/useCart";
+import MyOrder from "../OrderCard/MyOrder";
+
 const Account = () => {
   const { user } = useAuth();
   const { loading, signout } = useSignout();
+
+  const { data } = useCart();
+  const totalQuantity = data?.items?.length || 0;
+
   return (
     <div>
       <div className="account-parent">
@@ -88,15 +95,15 @@ const Account = () => {
                 <span>1285</span>
               </div>
             </div>
-            <div className="item">
-              <img src="./icons/cart.png" alt="cart icon" width="25px" />
-              <Link to="/cart">
+            <Link to="/cart">
+              <div className="item">
+                <img src="./icons/cart.png" alt="cart icon" width="25px" />
                 <div className="item-details">
                   <span>Cart</span>
-                  <span>4</span>
+                  <span>{totalQuantity}</span>
                 </div>
-              </Link>
-            </div>
+              </div>
+            </Link>
           </div>
           <div className="account-container">
             <h4>Account details</h4>
@@ -109,6 +116,7 @@ const Account = () => {
                 </div>
                 <div>
                   <h6>Phone Number</h6>
+                  <span>Edit</span>
                   <span>+91 9455109348</span>
                 </div>
                 <div>
@@ -134,50 +142,12 @@ const Account = () => {
               </div>
             </div>
           </div>
-          <div className="order">
-            <h4>Active orders</h4>
-            <hr />
-            <div className="order-items">
-              <div className="order-item">
-                <div className="order-id order-column">
-                  <span>Order ID:</span>
-                  <span>#QPELKD987SDNI</span>
-                </div>
-                <div className="order-date order-column">
-                  <span>Date:</span>
-                  <span>28.09.2025</span>
-                </div>
-                <div className="order-price order-column">
-                  <span>Price:</span>
-                  <span>₹9850</span>
-                </div>
-                <div className="order-status order-column">
-                  <span>Status:</span>
-                  <span>In transit</span>
-                </div>
-              </div>
-              <hr />
-              <div className="order-item">
-                <div className="order-id order-column">
-                  <span>Order ID:</span>
-                  <span>#QPELKD987SDNI</span>
-                </div>
-                <div className="order-date order-column">
-                  <span>Date:</span>
-                  <span>28.09.2025</span>
-                </div>
-                <div className="order-price order-column">
-                  <span>Price:</span>
-                  <span>₹9850</span>
-                </div>
-                <div className="order-status order-column">
-                  <span>Status:</span>
-                  <span>In transit</span>
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
+      </div>
+      <div className="order">
+        <h4>Active orders</h4>
+        <hr />
+        <MyOrder />
       </div>
     </div>
   );

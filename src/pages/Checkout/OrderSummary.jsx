@@ -1,4 +1,4 @@
-import OrderItem from "../OrderItem";
+import OrderItem from "../../components/OrderItem";
 
 const OrderSummary = ({
   addressData,

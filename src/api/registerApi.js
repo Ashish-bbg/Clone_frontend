@@ -1,21 +1,21 @@
 import axiosInstance from "./axiosInstance";
 
 export const registerUser = async (userData) => {
-  const response = await axiosInstance.post("/users/register", userData);
+  const response = await axiosInstance.post("/auth/register", userData);
   return response.data;
 };
 
 export const loginUser = async (userData) => {
-  const response = await axiosInstance.post("/users/login", userData);
+  const response = await axiosInstance.post("/auth/login", userData);
   return response.data;
 };
 
 export const logout = async () => {
-  const response = await axiosInstance.post("/users/logout");
+  const response = await axiosInstance.post("/auth/logout");
   return response.data;
 };
 
 export const getUserProfile = async () => {
-  const response = await axiosInstance.get("/users");
+  const response = await axiosInstance.get("/userProfile");
   return response.data;
 };

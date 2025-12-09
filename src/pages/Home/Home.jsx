@@ -1,6 +1,6 @@
 import { useProducts } from "../../queries/useProducts";
 import "./Home.css";
-import Product from "./Products/Product";
+import Product from "../../components/ProductCard/Product";
 
 const Home = () => {
   const { data, isLoading, error } = useProducts();

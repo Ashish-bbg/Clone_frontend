@@ -2,7 +2,7 @@ import "./OrderDetails.css";
 import { useParams } from "react-router-dom";
 import { useGetOrderById } from "../../queries/useGetOrderById";
 import { formatDate } from "../../utiles/formatDate";
-import OrderItem from "../OrderItem";
+import OrderItem from "../../components/OrderItem";
 import { useQueryClient } from "@tanstack/react-query";
 
 const OrderDetails = () => {

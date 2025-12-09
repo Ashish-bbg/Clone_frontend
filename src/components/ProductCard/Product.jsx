@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
 import "./Product.css";
-import { useAddToCart } from "../../../hooks/useAddToCart";
-import { useCart } from "../../../queries/useCart";
-import { useUpdateCartItem } from "../../../hooks/useUpdateCartItem";
-import { useAuth } from "../../../context/useAuth";
+import { useAddToCart } from "../../hooks/useAddToCart";
+import { useCart } from "../../queries/useCart";
+import { useUpdateCartItem } from "../../hooks/useUpdateCartItem";
+import { useAuth } from "../../context/useAuth";
 
 const Product = ({ name, price, img, id }) => {
   // console.log(id);
