@@ -1,6 +1,6 @@
 // import { useEffect, useState } from "react";
 import { useEffect, useState } from "react";
-import { getUserProfile } from "../api/registerApi";
+import { getUserProfile } from "../api/userProfileApi";
 import { AuthContext } from "./AuthContext";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 

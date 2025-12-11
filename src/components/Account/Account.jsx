@@ -4,13 +4,41 @@ import { useSignout } from "../../hooks/useSignout";
 import { Link } from "react-router-dom";
 import { useCart } from "../../queries/useCart";
 import MyOrder from "../OrderCard/MyOrder";
+import AccountDetails from "./AccountDetails";
+import { useState } from "react";
+import { updateUserProfile } from "../../api/userProfileApi";
+import { useQueryClient } from "@tanstack/react-query";
 
 const Account = () => {
   const { user } = useAuth();
   const { loading, signout } = useSignout();
-
+  // console.log(user.addresses[0]);
   const { data } = useCart();
   const totalQuantity = data?.items?.length || 0;
+  const [name, setName] = useState(user.name);
+  const [isEdit, setIsEdit] = useState(false);
+
+  const queryClient = useQueryClient();
+
+  const handleOnEdit = async (e) => {
+    e.preventDefault();
+    setIsEdit(!isEdit);
+    // if isEdit is true means user will save value
+    if (isEdit) {
+      try {
+        // console.log("Not making n/w call as the name is same");
+        if (name === user.name) return;
+        const response = await updateUserProfile({ name });
+
+        await queryClient.setQueryData(["authUser"], (oldData) => {
+          return { ...oldData, ...response };
+        });
+        setName(response?.name);
+      } catch (error) {
+        console.error("Error occured while updating name", error);
+      }
+    }
+  };
 
   return (
     <div>
@@ -25,8 +53,26 @@ const Account = () => {
                   className="profile-img"
                 />
               </div>
-              <div>
-                <span>{user?.name}</span>
+              <div className="edit-width">
+                <div className="edit-name">
+                  {isEdit ? (
+                    <input
+                      type="text"
+                      className="edit-input-name"
+                      value={name}
+                      onChange={(e) => setName(e.target.value)}
+                    />
+                  ) : (
+                    <span>{name}</span>
+                  )}
+                  <span className="account-edit-btn" onClick={handleOnEdit}>
+                    {isEdit ? (
+                      <span className="save-btn">Save</span>
+                    ) : (
+                      <img src="../../icons/edit.png" height={14} />
+                    )}
+                  </span>
+                </div>
                 <p>{user?.email}</p>
               </div>
             </div>
@@ -105,43 +151,7 @@ const Account = () => {
               </div>
             </Link>
           </div>
-          <div className="account-container">
-            <h4>Account details</h4>
-            <hr />
-            <div className="account-info">
-              <div className="account-info-left">
-                <div>
-                  <h6>Email address</h6>
-                  <span>{user?.email}</span>
-                </div>
-                <div>
-                  <h6>Phone Number</h6>
-                  <span>Edit</span>
-                  <span>+91 9455109348</span>
-                </div>
-                <div>
-                  <h6>Country</h6>
-                  <span>Asia India</span>
-                </div>
-              </div>
-              <div className="account-info-right">
-                <div>
-                  <h6>Home Address</h6>
-                  <span>
-                    1st EME Centre RdCavalry Barracks Defence Officer's Colony,
-                    Bolarum, Secunderabad, Telangana 500087
-                  </span>
-                </div>
-                <div>
-                  <h6>Delivery Address</h6>
-                  <span>
-                    Accenture Services Pvt. Ltd., Survey No. 115, WaveRock
-                    Building, Nanakramguda, Hyderabad, Telangana, 500008
-                  </span>
-                </div>
-              </div>
-            </div>
-          </div>
+          <AccountDetails user={user} />
         </div>
       </div>
       <div className="order">

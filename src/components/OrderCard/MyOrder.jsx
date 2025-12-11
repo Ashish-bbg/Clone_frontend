@@ -7,14 +7,14 @@ const MyOrder = () => {
   const { data: myOrder, isLoading: orderLoading } = useGetPlacedOrder();
 
   if (orderLoading) return <h2>Loading your orders...</h2>;
-  console.log(myOrder);
+  // console.log(myOrder);
   return (
     <div className="my-order-container">
       <div className="my-order-filters">
         <h3>My orders</h3>
       </div>
       <div className="my-order-container">
-        {myOrder.map((order) => (
+        {myOrder?.map((order) => (
           <div className="my-order" key={order._id}>
             <div className="my-order-col">
               <span>Order ID:</span>

@@ -176,14 +176,45 @@ h4 {
 }
 
 /* Individual info block */
-.account-info-left div,
-.account-info-right div {
+.account-info-left > div,
+.account-info-right > div {
   display: flex;
   flex-direction: column;
   padding: 10px 15px;
   background-color: #f9f9f9;
   border-radius: 10px;
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+}
+
+.account-left-edit {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.account-edit-btn {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.edit-width {
+  width: 100%;
+}
+
+.edit-name {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  /* border: 1px solid; */
+}
+
+.save-btn {
+  padding-left: 10px;
+}
+
+.edit-input-name {
+  width: 70%;
+  height: 100%;
 }
 
 /* Headings */
