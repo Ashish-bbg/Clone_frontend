@@ -12,7 +12,8 @@ import { useQueryClient } from "@tanstack/react-query";
 const Account = () => {
   const { user } = useAuth();
   const { loading, signout } = useSignout();
-  // console.log(user.addresses[0]);
+
+  // console.log(user);
   const { data } = useCart();
   const totalQuantity = data?.items?.length || 0;
   const [name, setName] = useState(user.name);

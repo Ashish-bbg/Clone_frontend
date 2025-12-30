@@ -5,6 +5,7 @@ export const useGetPlacedOrder = () => {
   return useQuery({
     queryKey: ["order"],
     queryFn: getMyOrders,
-    staleTime: 1000 * 60 * 5,
+    refetchOnMount: true,
+    staleTime: 0,
   });
 };

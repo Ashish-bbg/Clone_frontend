@@ -163,7 +163,8 @@ h4 {
   background-color: #fff;
   padding-bottom: 10px;
   border-radius: 12px;
-  gap: 30px; /* Space between left and right */
+  gap: 30px;
+  width: 100%;
 }
 
 /* Left and right columns */
@@ -242,62 +243,16 @@ h4 {
   margin-top: 0;
 }
 
-/* unused css will remove */
-
-/* .order h4 {
-  margin-bottom: 15px;
-  font-size: 1.2rem;
-  font-weight: 600;
-  color: #333;
-} */
-
-/* Container for order items */
-/* .order-items {
+.address-header {
   display: flex;
-  flex-direction: column;
-  gap: 10px;
-} */
+  justify-content: space-between;
+}
 
-/* Individual order item */
-/* .order-item {
+.edit-btn-img {
+  cursor: pointer;
+}
+
+.flex-box {
   display: flex;
-  justify-content: space-between; 
-  padding: 12px 15px;
-  background-color: #f9f9f9;
-  border-radius: 10px;
-  align-items: center;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-} */
-
-/* .order-item:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-} */
-
-/* Columns inside each order item */
-/* .order-column {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-} */
-
-/* Labels (Order ID, Date, Price, Status) */
-/* .order-column span:first-child {
-  font-size: 0.85rem;
-  color: #555;
-  font-weight: 500;
-} */
-
-/* Values (#QPELKD987SDNI, 28.09.2025, etc.) */
-/* .order-column span:last-child {
-  font-size: 1rem;
-  font-weight: 600;
-  color: #222;
-} */
-
-/* Divider between orders */
-/* .order-items hr {
-  border: none;
-  border-top: 1px solid #e0e0e0;
-  margin: 5px 0;
-} */
+  justify-content: space-between;
+}

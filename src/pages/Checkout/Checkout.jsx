@@ -1,5 +1,5 @@
 import "./Checkout.css";
-import AddressForm from "./AddressForm";
+import AddressForm from "../../components/AddressForm/AddressForm";
 import OrderSummary from "./OrderSummary";
 import { useAddressForm } from "../../hooks/useAddressForm";
 import { useCart } from "../../queries/useCart";
@@ -100,7 +100,9 @@ const Checkout = () => {
   return (
     <div>
       <div className="checkout-parent">
-        <AddressForm {...formLogic} />
+        <div className="checkout-address-left">
+          <AddressForm {...formLogic} />
+        </div>
         <OrderSummary
           addressData={formLogic?.addressData}
           cartItem={cartData?.items || []}

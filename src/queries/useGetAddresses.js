@@ -5,5 +5,7 @@ export const useGetAddresses = () => {
   return useQuery({
     queryKey: ["addresses"],
     queryFn: getAllAddress,
+    staleTime: 0,
+    refetchOnMount: true,
   });
 };

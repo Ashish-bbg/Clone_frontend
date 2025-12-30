@@ -16,7 +16,9 @@ export const AuthProvider = ({ children }) => {
   } = useQuery({
     queryKey: ["authUser"],
     queryFn: getUserProfile,
-    retry: false,
+    staleTime: 0,
+    refetchOnMount: true,
+    // retry: false,
     enabled: isAuthenticated,
   });
 

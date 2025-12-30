@@ -7,7 +7,15 @@ const MyOrder = () => {
   const { data: myOrder, isLoading: orderLoading } = useGetPlacedOrder();
 
   if (orderLoading) return <h2>Loading your orders...</h2>;
-  // console.log(myOrder);
+  if (myOrder.length === 0)
+    return (
+      <h4>
+        You haven't order anything yet, please order{" "}
+        <Link to="/" style={{ textDecoration: "underline", color: "blue" }}>
+          visit here
+        </Link>
+      </h4>
+    );
   return (
     <div className="my-order-container">
       <div className="my-order-filters">
