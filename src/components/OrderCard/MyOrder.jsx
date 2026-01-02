@@ -19,7 +19,7 @@ const MyOrder = () => {
   return (
     <div className="my-order-container">
       <div className="my-order-filters">
-        <h3>My orders</h3>
+        <h3>My orders ({myOrder?.length})</h3>
       </div>
       <div className="my-order-container">
         {myOrder?.map((order) => (

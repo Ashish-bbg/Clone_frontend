@@ -64,7 +64,7 @@
   width: 100%;
 }
 
-.profile-details > div {
+.profile-details .profile-menu {
   display: flex;
   align-items: center;
   gap: 12px;
@@ -74,7 +74,7 @@
   border-radius: 8px;
 }
 
-.profile-details > div:hover {
+.profile-details .profile-menu:hover {
   background-color: #f5f5f5;
 }
 

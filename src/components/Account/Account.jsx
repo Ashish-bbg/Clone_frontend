@@ -8,10 +8,13 @@ import AccountDetails from "./AccountDetails";
 import { useState } from "react";
 import { updateUserProfile } from "../../api/userProfileApi";
 import { useQueryClient } from "@tanstack/react-query";
+import { useGetPlacedOrder } from "../../queries/useGetPlacedOrder";
 
 const Account = () => {
   const { user } = useAuth();
   const { loading, signout } = useSignout();
+
+  const { data: myOrder, isLoading: orderLoading } = useGetPlacedOrder();
 
   // console.log(user);
   const { data } = useCart();
@@ -79,25 +82,28 @@ const Account = () => {
             </div>
           </div>
           <div className="profile-details">
-            <div>
-              <img src="./icons/orders.png" alt="orders icon" width="30px" />
-              <span>My orders</span>
-            </div>
-            <div>
+            <Link to="/my-orders">
+              <div className="profile-menu">
+                <img src="./icons/orders.png" alt="orders icon" width="30px" />
+                <span>My orders</span>
+              </div>
+            </Link>
+
+            <div className="profile-menu">
               <img src="./icons/reviews.png" alt="reviews icon" width="30px" />
               <span>Reviews</span>
             </div>
-            <div>
+            <div className="profile-menu">
               <img src="./icons/delivery.png" alt="reviews icon" width="30px" />
               <span>Delivery addresses</span>
             </div>
-            <div>
-              <Link to="/cart">
+            <Link to="/cart">
+              <div className="profile-menu">
                 <img src="./icons/cart.png" alt="reviews icon" width="30px" />
                 <span>Cart</span>
-              </Link>
-            </div>
-            <div>
+              </div>
+            </Link>
+            <div className="profile-menu">
               <img
                 src="./icons/heart-outline.png"
                 alt="reviews icon"
@@ -105,11 +111,11 @@ const Account = () => {
               />
               <span>Favourite items</span>
             </div>
-            <div>
+            <div className="profile-menu">
               <img src="./icons/settings.png" alt="reviews icon" width="30px" />
               <span>Settings</span>
             </div>
-            <div onClick={signout}>
+            <div onClick={signout} className="profile-menu">
               <img src="./icons/logout.png" alt="reviews icon" width="30px" />
               <span>{loading ? "Logging out..." : "Logout"}</span>
             </div>
@@ -132,7 +138,7 @@ const Account = () => {
               <img src="./icons/orders.png" alt="orders icon" width="25px" />
               <div className="item-details">
                 <span>Total orders</span>
-                <span>124</span>
+                <span>{myOrder?.length}</span>
               </div>
             </div>
             <div className="item">
