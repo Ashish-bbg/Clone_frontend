@@ -9,7 +9,7 @@ const OrderDetails = () => {
   const { id } = useParams();
   const queryClient = useQueryClient();
   const { data: order, isLoading, isError } = useGetOrderById(id);
-
+  // console.log(order);
   if (isLoading) {
     return <h1>Loading order details...</h1>;
   }
@@ -73,7 +73,7 @@ const OrderDetails = () => {
     processing: 2, // Highlights up to 'Warehouse'
     shipped: 3, // Highlights up to 'Out for Delivery'
     delivered: 4, // Highlights everything
-    cancelled: -1,
+    cancelled: 0,
   };
 
   const currentStepIndex = statusStepMap[order?.status] || 0;
@@ -100,6 +100,17 @@ const OrderDetails = () => {
 
       <div className="order-track-items">
         <div className="order-items">
+          {order.status === "cancelled" && (
+            <div className="cancelled-banner">
+              <div>
+                <h4>Order Cancelled</h4>
+                <p>
+                  This order was cancelled on {formatDate(order.updatedAt)}.
+                </p>
+              </div>
+            </div>
+            // <h3>This Order was cancelled by you</h3>
+          )}
           <OrderItem items={formattedItems} />
         </div>
         <div className="order-track-details">
@@ -133,7 +144,7 @@ const OrderDetails = () => {
               <strong>Total price</strong>
             </span>
             <span>
-              <strong>₹7198</strong>
+              <strong>₹{order.totalAmount}</strong>
             </span>
           </div>
         </div>

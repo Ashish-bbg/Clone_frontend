@@ -15,7 +15,6 @@ const Account = () => {
   const { loading, signout } = useSignout();
 
   const { data: myOrder, isLoading: orderLoading } = useGetPlacedOrder();
-
   // console.log(user);
   const { data } = useCart();
   const totalQuantity = data?.items?.length || 0;

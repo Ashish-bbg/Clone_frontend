@@ -14,6 +14,7 @@ export const useGetOrderById = (orderId) => {
       const existingOrder = allOrders?.find((order) => order._id === orderId);
       return existingOrder;
     },
-    // staleTime: 0,
+    refetchOnMount: true,
+    staleTime: 0,
   });
 };

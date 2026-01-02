@@ -14,3 +14,8 @@ export const getOrderById = async (id) => {
   const response = await axiosInstance.get(`/orders/${id}`);
   return response.data;
 };
+
+export const cancelOrderById = async (id) => {
+  const response = await axiosInstance.post(`/orders/${id}`);
+  return response.data;
+};

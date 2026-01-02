@@ -100,15 +100,15 @@ const AccountDetails = ({ user }) => {
             <AddressForm {...formLogic} />
           ) : (
             user?.addresses?.map((address) => (
-              <div key={address.id}>
+              <div key={address._id}>
                 <div className="flex-box">
                   <h6 style={{ textTransform: "capitalize" }}>
                     {address.type} Address
                   </h6>
 
-                  {editingAddressId === address.id ? (
+                  {editingAddressId === address._id ? (
                     <span
-                      onClick={() => handleEditAddress(address.id)}
+                      onClick={() => handleEditAddress(address._id)}
                       style={{ cursor: "pointer" }}
                     >
                       Cancel
@@ -118,12 +118,12 @@ const AccountDetails = ({ user }) => {
                       src="../../icons/edit.png"
                       height="15"
                       className="edit-btn-img"
-                      onClick={() => handleEditAddress(address.id)}
+                      onClick={() => handleEditAddress(address._id)}
                     />
                   )}
                 </div>
 
-                {editingAddressId === address.id ? (
+                {editingAddressId === address._id ? (
                   <AddressForm {...formLogic} />
                 ) : (
                   <>

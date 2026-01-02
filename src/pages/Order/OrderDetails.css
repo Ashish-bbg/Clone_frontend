@@ -230,3 +230,26 @@
     width: 100%;
   }
 }
+
+.cancelled-banner {
+  background-color: #ffebee; /* Light Red */
+  border: 1px solid #ffcdd2;
+  color: #c62828; /* Dark Red text */
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.cancelled-banner h4 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.cancelled-banner p {
+  margin: 4px 0 0 0;
+  font-size: 14px;
+}
